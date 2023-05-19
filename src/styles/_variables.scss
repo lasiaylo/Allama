@@ -1,0 +1,26 @@
+$background-color: #FFFEFA;
+$primary-color: #2B292B;
+$secondary-color: #ECECEC;
+$highlight-color: #467A53;
+
+
+@font-face {
+  font-family: "Redaction Serif" !important;
+  src: local('Redaction 100')
+}
+
+@mixin header {
+  //font: 1.5rem "Redaction Serif";
+  font: 1.5rem "Redaction 100";
+  color: $primary-color;
+  transition: font;
+
+  .clear {
+    font: 1.5rem "Redaction 10";
+  }
+}
+
+@mixin description {
+  font-size: 1rem;
+}
+

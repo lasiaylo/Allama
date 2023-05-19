@@ -16,6 +16,10 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@radix-ui/react-navigation-menu": "^1.1.2",
+    "@radix-ui/react-separator": "^1.0.2",
+    "classnames": "^2.3.2",
+    "framer-motion": "^10.12.12",
     "gatsby": "^5.9.1",
     "gatsby-plugin-google-gtag": "^5.9.0",
     "gatsby-plugin-image": "^3.9.0",
@@ -25,12 +29,26 @@
     "gatsby-transformer-sharp": "^5.9.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.62.1"
+    "react-router-dom": "^6.11.1"
   },
   "devDependencies": {
     "@types/node": "^18.16.5",
     "@types/react": "^18.2.5",
     "@types/react-dom": "^18.2.4",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.40.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "stylelint": "^15.6.2",
+    "stylelint-config-recess-order": "^4.0.0",
+    "stylelint-config-standard": "^33.0.0",
+    "stylelint-config-standard-scss": "^9.0.0",
+    "stylelint-order": "^6.0.3",
     "typescript": "^5.0.4"
   }
 }
