@@ -1,0 +1,12 @@
+@import "../variables";
+
+.name-container {
+  @include header;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  .lastname {
+    text-indent: 20px;
+  }
+}

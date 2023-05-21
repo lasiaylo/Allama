@@ -1,21 +1,32 @@
 @import "../variables";
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  justify-self: center;
-  padding: 16px;
+  display: grid;
+  grid-template-columns: repeat(2, 20px);
+  align-content: center;
+  justify-content: center;
+  line-height: 20px;
 
   .name-container {
     @include header;
 
-    flex: 1;
-    float: left;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    .lastname {
+      text-indent: 20px;
+    }
+  }
+
+  .portrait {
+    align-self: center;
   }
 
   .contact-container {
     @include description;
 
-    float: right;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: end;
   }
 }

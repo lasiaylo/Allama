@@ -1,0 +1,31 @@
+@import "../variables";
+
+html, body, #___gatsby, #gatsby-focus-wrapper {
+  height: 100%;
+  margin: 0;
+  background: $background-color
+}
+
+
+* {
+  // border: 0.5px dashed $primary-color;
+  //outline: 0.5px dashed $primary-color;
+}
+
+.site-container {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: $site-width;
+  min-height: 100%;
+  padding-top: $vertical-margins;
+  padding-bottom: $vertical-margins;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.portrait {
+  width: $portrait-size;
+  height: $portrait-size;
+}

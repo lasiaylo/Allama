@@ -1,31 +1,32 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
+import LandingPage from './landing';
 
-import Header, { IContactInfo } from '../components/header';
-
-import '../styles/index.scss';
+import '../styles/pages/index.scss';
 
 export const query = graphql`
   query Index {
-    contact: allContentfulContactInfo(limit: 1) {
+    info: allContentfulPersonalInfo(limit: 1) {
       nodes {
         firstName
         lastName
         email
         phoneNumber
+        blurb
+        portrait {
+          image: gatsbyImage(width: 140, height: 140)
+        }
       }
     }
   }
 `;
 
 export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
-  const contactInfo: IContactInfo = data.contact.nodes[0];
+  const { info } = data;
   return (
     <div className="site-container">
-      <Header contactInfo={contactInfo} />
-      <div className="portrait" />
-      <div className="blurb">Allamaprabhu is a NY-based director and the co–founder of 52films</div>
+      <LandingPage info={info} />
     </div>
   );
 }

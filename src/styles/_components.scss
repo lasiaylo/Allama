@@ -1,0 +1,20 @@
+@import "variables";
+
+.name-containers {
+  @include header;
+
+  margin-top: auto;
+  margin-bottom: auto;
+
+  .lastname {
+    text-indent: 20px;
+  }
+}
+
+.contact-container {
+  @include description;
+
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: end;
+}
