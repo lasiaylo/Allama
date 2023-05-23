@@ -16,7 +16,6 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   max-width: $site-width;
   min-height: 100%;
   padding-top: $vertical-margins;
@@ -28,4 +27,44 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
 .portrait {
   width: $portrait-size;
   height: $portrait-size;
+}
+
+.landing-page {
+  display: grid;
+  flex: 1 0 auto;
+  grid-template:
+    ". . ."
+    "name portrait contact"
+    ".. .. blurb";
+  grid-template-rows: repeat(3, minmax(1fr, 300px));
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 70px;
+  align-self: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 900px;
+  max-height: 1000px;
+
+  .name-container {
+    grid-area: name;
+    align-self: end;
+  }
+
+  .portrait {
+    grid-area: portrait;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .contact-container {
+    grid-area: contact
+  }
+
+  .blurb {
+    grid-area: blurb;
+    align-self: end;
+    justify-self: end;
+    max-width: 16ch;
+    text-align: end;
+  }
 }

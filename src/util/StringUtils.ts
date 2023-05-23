@@ -6,6 +6,6 @@ export function isEmpty(str: string) {
   return !str || str.length === 0;
 }
 
-export function isBlank(str: string) {
+export function isBlank(str: string | null) {
   return !str || /^\s*$/.test(str);
 }

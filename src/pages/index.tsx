@@ -1,9 +1,12 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql } from 'gatsby';
-import LandingPage from './landing';
+import { graphql, Link } from 'gatsby';
 
 import '../styles/pages/index.scss';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import Name from '../components/name';
+import Contact from '../components/contact';
+import { ToNonbreakHyphen } from '../util/StringUtils';
 
 export const query = graphql`
   query Index {
@@ -23,10 +26,24 @@ export const query = graphql`
 `;
 
 export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
-  const { info } = data;
+  const {
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    blurb,
+    // @ts-ignore Fix another day
+    portrait: { image },
+  } = data.info.nodes[0];
   return (
     <div className="site-container">
-      <LandingPage info={info} />
+      <div className="landing-page">
+        <Link to="works">Beep boop</Link>
+        <Name firstName={firstName} lastName={lastName} />
+        <GatsbyImage className="portrait" image={image} alt="" />
+        <Contact email={email} phoneNumber={phoneNumber} />
+        <div className="blurb">{ToNonbreakHyphen(blurb ?? '')}</div>
+      </div>
     </div>
   );
 }

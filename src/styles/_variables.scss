@@ -2,19 +2,19 @@ $background-color: #FAFBFFFF;
 $primary-color: #403F3D;
 $secondary-color: #ECECEC;
 $highlight-color: #467A53;
-$site-width: 1000px;
+$site-width: 800px;
 $vertical-margins: 20px;
 $portrait-size: 140px;
 
 
 @mixin header {
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   color: $primary-color;
   transition: font;
 }
 
 @mixin description {
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: $primary-color;
 }
 

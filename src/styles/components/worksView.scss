@@ -1,0 +1,15 @@
+@import '../variables';
+
+.works-view {
+  display: flex;
+}
+
+.title {
+  @include header;
+}
+
+.description {
+  @include description;
+}
+
+
