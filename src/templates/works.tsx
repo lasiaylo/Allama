@@ -1,57 +1,49 @@
 import * as React from 'react';
+import { memo } from 'react';
 
-import { graphql, PageProps } from 'gatsby';
+import { PageProps } from 'gatsby';
 import { Separator } from '@radix-ui/react-separator';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import * as _ from 'lodash';
 import Name from '../components/name';
 import Contact from '../components/contact';
 import '../styles/pages/works.scss';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import WorksView from '../components/worksView';
-import Sidebar from '../components/sidebar';
+import { PageContextType } from '../../gatsby-node';
+import NavMenu from '../components/navMenu';
 
-export const query = graphql`
-  query Index {
-    info: allContentfulPersonalInfo(limit: 1) {
-      nodes {
-        firstName
-        lastName
-        email
-        phoneNumber
-        blurb
-        portrait {
-          image: gatsbyImage(width: 140, height: 140)
-        }
-      }
-    }
-
-    works: allContentfulWork(filter: { roles: { in: "Acting" } }) {
-      nodes {
-        roles
-        datePublished
-        name
-      }
-    }
-  }
-`;
-
-interface Work {
-  name: string;
-  datePublished: string;
+const RoleSelector = memo(function RoleSelector({
+  roles,
+}: {
   roles: string[];
-}
+}) {
+  return (
+    <NavMenu
+      className="role-selector"
+      buttons={roles.map((role) => {
+        return {
+          label: role,
+          to: role.toLowerCase(),
+        };
+      })}
+    />
+  );
+},
+_.isEqual);
 
-export default function WorksPage({ data }: PageProps<Queries.IndexQuery>) {
-  const {
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    // @ts-ignore Fix another day
-    portrait: { image },
-  } = data.info.nodes[0];
-
-  const titles = data.works.nodes.map((node) => node.name).filter(isNonNull);
-
+export default function WorksPage({
+  pageContext: {
+    roles,
+    works,
+    personalInfo: {
+      firstName,
+      lastName,
+      email,
+      phoneNumber,
+      portrait: { image },
+    },
+  },
+}: PageProps<any, PageContextType>) {
   return (
     <div className="site-container">
       <div className="works-page">
@@ -60,14 +52,7 @@ export default function WorksPage({ data }: PageProps<Queries.IndexQuery>) {
           <Contact email={email} phoneNumber={phoneNumber} />
         </div>
         <Separator className="separator" />
-        <div className="role-selector">
-          <div>Writer</div>
-          <div>Producer</div>
-          <div>Director</div>
-          <div>Editor</div>
-          <div>Actor</div>
-        </div>
-        <Sidebar titles={titles} />
+        <RoleSelector roles={roles} />
         <div className="works-view">
           <WorksView
             title="The Server"

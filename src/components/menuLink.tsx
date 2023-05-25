@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Link } from 'gatsby';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
+import { Link } from 'gatsby';
 
 interface PropTypes {
   to: string;
