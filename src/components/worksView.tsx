@@ -1,22 +1,23 @@
 import * as React from 'react';
-
-interface WorkDetails {
-  title: string;
-  description: string;
-  //  TO-DO: Typecast
-  preview: any;
-}
+import { IWork } from '../../gatsby-node';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 export default function WorksView({
-  title,
+  name,
   description,
   preview,
-}: WorkDetails) {
+}: React.PropsWithChildren<IWork>) {
   return (
     <div className="works-view">
-      <div className="preview" />
-      <div className="title">{title}</div>
-      <div className="description">{description}</div>
+      <GatsbyImage
+        className="preview"
+        alt=""
+        image={preview.image}
+        // objectFit={'contain'}
+      />
+      <h2>{name}</h2>
+      <p>{description}</p>
+      {/*<h4 className={'test'}>{description}</h4>*/}
     </div>
   );
 }

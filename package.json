@@ -16,6 +16,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@radix-ui/react-direction": "^1.0.1",
     "@radix-ui/react-navigation-menu": "^1.1.2",
     "@radix-ui/react-separator": "^1.0.2",
     "classnames": "^2.3.2",

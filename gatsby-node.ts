@@ -2,7 +2,7 @@ import type { GatsbyNode } from 'gatsby';
 import path from 'path';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-interface IWork {
+export interface IWork {
   readonly name: string;
   readonly description: string;
   readonly roles: string[];
@@ -53,7 +53,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
           datePublished
           description
           preview {
-            image: gatsbyImageData(width: 200)
+            image: gatsbyImageData(layout: CONSTRAINED)
           }
         }
       }

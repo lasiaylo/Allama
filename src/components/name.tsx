@@ -8,8 +8,8 @@ type Props = {
 export default function Name({ firstName, lastName }: Props) {
   return (
     <div className="name-container">
-      <div className="firstname">{firstName}</div>
-      <div className="lastname">{lastName}</div>
+      <h1 className="firstname">{firstName}</h1>
+      <h1 className="lastname">{lastName}</h1>
     </div>
   );
 }

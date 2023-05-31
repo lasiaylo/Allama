@@ -8,8 +8,8 @@ type Props = {
 export default function Contact({ email, phoneNumber }: Props) {
   return (
     <div className="contact-container">
-      <div className="email">{email}</div>
-      <div className="phone-number">{phoneNumber}</div>
+      <p className="email">{email}</p>
+      <p className="phone-number">{phoneNumber}</p>
     </div>
   );
 }

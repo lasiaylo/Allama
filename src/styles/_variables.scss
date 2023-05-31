@@ -1,20 +1,103 @@
-$background-color: #FAFBFFFF;
-$primary-color: #403F3D;
-$secondary-color: #ECECEC;
-$highlight-color: #467A53;
+/* Palette */
+$background-color: #fafbff;
+$primary-color: #403f3d;
+$secondary-color: #868686;
+$highlight-color: #467a53;
+$fade-in-color: #8c8a85;
+
+/* Site Margins */
 $site-width: 800px;
 $vertical-margins: 20px;
 $portrait-size: 140px;
 
+/* Gaps */
+$gap-large: 40px;
+$gap-med: 15px;
+$gap-small: 5px;
 
-@mixin header {
-  font-size: 1.5rem;
-  color: $primary-color;
-  transition: font;
+/* Fonts */
+@font-face {
+  font-family: 'Frame Head Trial';
+  font-weight: 100 900;
+  src: url('/static/fonts/frameHead/FrameHead-Bold-Trial.otf') format('otf');
+  font-display: swap;
 }
 
-@mixin description {
-  font-size: 1.3rem;
-  color: $primary-color;
+@font-face {
+  font-family: 'Redaction 100';
+  src: url('/static/fonts/redaction/Redaction_100-Regular.woff2') format('otf');
+  font-display: swap;
 }
 
+/* Font Hierarchy */
+
+@mixin button {
+  font: 1rem/1.2 'Frame Text Trial', serif;
+  //font: 1rem Redaction-Regular, serif;
+
+  color: $secondary-color;
+  list-style: none;
+  user-select: none;
+  animation: blur-in 0.1s steps(1, end);
+}
+
+h1,
+h2,
+h3,
+p,
+a,
+button,
+ul {
+  all: unset;
+  display: block;
+}
+
+html {
+  font-size: 16px;
+}
+
+h1 {
+  //font: 1.3rem "Redaction 10", serif;
+  font: 1.3rem/1.2 'Frame Head Trial', serif;
+  font-weight: bold;
+  color: $primary-color;
+  animation: blur-in 0.1s steps(1, end);
+}
+
+h2 {
+  margin: $gap-med 0;
+  font: 1.5rem 'Frame Head Trial', serif;
+  color: $primary-color;
+  animation: blur-in 0.1s steps(1, end);
+}
+
+h3 {
+  @include button;
+}
+
+p {
+  width: 30ch;
+  //font: 1.094rem Redaction-Regular, serif;
+  font: 1rem/1.45 'Frame Text Trial', serif;
+  color: $primary-color;
+  animation: blur-in 0.1s steps(1, end);
+}
+
+@keyframes blur-in {
+  0% {
+    font-family: 'Redaction 100', serif;
+    font-weight: 60;
+    color: $fade-in-color;
+    letter-spacing: -0.0024rem;
+  }
+
+  33% {
+    font-family: 'Redaction 35', serif;
+    color: $primary-color;
+    letter-spacing: 0;
+  }
+
+  66% {
+    font-family: 'Redaction 10', serif;
+  }
+}

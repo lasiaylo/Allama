@@ -1,46 +1,84 @@
 @import '../variables';
 
-
 .header {
   display: flex;
+  grid-area: header;
   justify-content: space-between;
-  margin: 5px;
+  padding: $gap-small;
+
+  &:hover {
+    background-color: $secondary-color;
+  }
 }
 
 .separator {
   height: 1px;
-  margin-bottom: 10px;
+  margin-bottom: $gap-med;
   background-color: $primary-color;
 }
 
 .role-selector {
-  @include description;
-
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: $gap-large;
 
   &:nth-child(n) {
-    gap: 10px;
+    gap: $gap-med;
+  }
+
+  .menu-list {
+    @include button;
+
+    display: flex;
+  }
+
+  .menu-item {
+    &:not(:last-child) {
+      margin-right: $gap-med;
+    }
   }
 }
 
-.works-view {
+.works-body {
   display: grid;
   grid-template:
     'sidebar view'
-    'sidebar view'
-    'sidebar view';
+    'chatbox chatbox';
   grid-template-columns: 1fr 3fr;
-  grid-column-gap: 40px;
+  grid-column-gap: $gap-large;
+  margin-bottom: $gap-large;
+
+  .sidebar {
+    grid-area: sidebar;
+
+    .menu-item {
+      padding-bottom: $gap-med;
+
+      &:last-child {
+        padding-bottom: 0;
+      }
+    }
+
+    .year-container:not(:first-child) {
+      margin-top: $gap-large;
+    }
+
+    .year {
+      padding-bottom: $gap-small;
+      color: $primary-color;
+      //font-style: italic;
+    }
+  }
+
+  .works-view {
+    grid-area: view;
+  }
+
+  .chatbox-container {
+    grid-area: chatbox;
+  }
 }
 
-.sidebar {
-  @include description;
-
-  grid-area: sidebar;
+.footer {
+  display: flex;
+  margin-top: auto;
 }
-
-.view {
-  grid-area: view;
-}
-

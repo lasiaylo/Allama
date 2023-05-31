@@ -55,11 +55,12 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
   return (
     <div className="site-container">
       <div className="landing-page">
-        <Link to={`/${fallback}`}>Beep boop</Link>
-        <Name firstName={firstName} lastName={lastName} />
-        <GatsbyImage className="portrait" image={image} alt="" />
-        <Contact email={email} phoneNumber={phoneNumber} />
-        <div className="blurb">{ToNonbreakHyphen(blurb ?? '')}</div>
+        <Link to={`/${fallback}`}>
+          <Name firstName={firstName} lastName={lastName} />
+          <GatsbyImage className="portrait" image={image} alt="" />
+          <Contact email={email} phoneNumber={phoneNumber} />
+          <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
+        </Link>
       </div>
     </div>
   );

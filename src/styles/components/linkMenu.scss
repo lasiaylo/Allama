@@ -1,0 +1,39 @@
+@import '../variables';
+
+.link-menu-list {
+  @include button;
+
+  display: flex;
+  margin: 0 0 $gap-large;
+  list-style: none;
+  color: $secondary-color;
+}
+
+.link-menu-link {
+  margin-right: $gap-med;
+  user-select: none;
+}
+
+.link-menu-link:hover {
+  background-color: $secondary-color;
+}
+
+.link-menu-indicator {
+  top: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 10px;
+  overflow: hidden;
+  background-color: aqua;
+  transition: width, transform 250ms ease;
+}
+
+.link-menu-indicator[data-state='visible'] {
+  animation: fadeIn 200ms ease;
+}
+
+.link-menu-indicator[data-state='hidden'] {
+  animation: fadeOut 200ms ease;
+}
