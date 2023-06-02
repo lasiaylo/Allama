@@ -61,14 +61,13 @@ $gap-small: 5px;
 /* Font Hierarchy */
 
 @mixin button {
+  @include blur-in('button-frames', 1rem, 1.2);
+
   font: 1rem/1.2 'Frame Text Trial', serif;
-
-  //font: 1rem Redaction-Regular, serif;
-
   color: $secondary-color;
   list-style: none;
   user-select: none;
-  animation: blur-in 0.1s steps(1, end);
+  animation: button-frames 1s steps(1, start);
 }
 
 h1,

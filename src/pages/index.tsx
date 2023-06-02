@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql, navigate } from 'gatsby';
 
@@ -51,15 +52,25 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
     .values()
     .next()
     .value.toLowerCase()}`);
+  const a = () => {console.log('a'); to();}
+
+    useEffect(() => {
+
+    window.addEventListener("wheel", a);
+
+    return () => {
+      window.removeEventListener("wheel", a);
+    }
+  }, []);
+
 
   return (
     <div className="site-container" onClick={to} onScroll={to}>
       <div className="landing-page">
         <Name firstName={firstName} lastName={lastName} />
-        <GatsbyImage className="portrait" image={image} alt="" />
+          <GatsbyImage className="portrait" image={image} alt=""/>
         <Contact email={email} phoneNumber={phoneNumber} />
         <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
-        <div className="fill"></div>
       </div>
     </div>
   );

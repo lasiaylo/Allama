@@ -32,6 +32,9 @@
   }
 
   .menu-item {
+    width: 10vw !important;
+    max-width: 10vw !important;
+
     &:not(:last-child) {
       margin-right: $gap-med;
     }
