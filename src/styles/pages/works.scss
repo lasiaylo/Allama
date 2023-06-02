@@ -44,11 +44,10 @@
 .works-body {
   display: grid;
   grid-template:
-    'sidebar view'
-    'chatbox chatbox';
+    'sidebar view';
   grid-template-columns: 1fr 3fr;
   grid-column-gap: $gap-large;
-  margin-bottom: $gap-large;
+  margin-bottom: $gap-x-large;
 
   .sidebar {
     grid-area: sidebar;
@@ -76,12 +75,16 @@
     grid-area: view;
   }
 
-  .chatbox-container {
-    grid-area: chatbox;
-  }
 }
 
-.footer {
-  display: flex;
-  margin-top: auto;
-}
+  .footer {
+    display: flex;
+    margin-top: auto;
+
+    .chatbox {
+      position: relative;
+      top: 0.469em; // Align baseline with image
+      margin-top: auto;
+      margin-left: $gap-large;
+    }
+  }

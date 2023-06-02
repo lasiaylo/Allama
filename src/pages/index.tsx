@@ -43,32 +43,31 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
     portrait: { image },
   } = data.info.nodes[0];
 
-  const to = () => navigate(`/${new Set(
-    data.works.nodes
-      .map((n) => n.roles)
-      .flat()
-      .filter(isNonNull) as string[]
-  )
-    .values()
-    .next()
-    .value.toLowerCase()}`);
-  const a = () => {console.log('a'); to();}
+  const to = () =>
+    navigate(
+      `/${new Set(
+        data.works.nodes
+          .map((n) => n.roles)
+          .flat()
+          .filter(isNonNull) as string[]
+      )
+        .values()
+        .next()
+        .value.toLowerCase()}`
+    );
 
-    useEffect(() => {
-
-    window.addEventListener("wheel", a);
-
+  useEffect(() => {
+    window.addEventListener('wheel', to);
     return () => {
-      window.removeEventListener("wheel", a);
-    }
+      window.removeEventListener('wheel', to);
+    };
   }, []);
-
 
   return (
     <div className="site-container" onClick={to} onScroll={to}>
       <div className="landing-page">
         <Name firstName={firstName} lastName={lastName} />
-          <GatsbyImage className="portrait" image={image} alt=""/>
+        <GatsbyImage className="portrait" image={image} alt="" />
         <Contact email={email} phoneNumber={phoneNumber} />
         <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
       </div>

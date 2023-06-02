@@ -5,6 +5,7 @@ import '../styles/components/functionMenu.scss';
 
 interface Button {
   label: string;
+  active: boolean;
   callback: Function;
 }
 
@@ -16,9 +17,9 @@ export default function FunctionMenu({
   buttons,
   orientation
 }: PropTypes) {
-  const items = buttons.map(({ label, callback }, index) => (
+  const items = buttons.map(({ label, active,  callback }, index) => (
     <NavigationMenu.Item className='menu-item' key={index}>
-      <NavigationMenu.Link active={true} className='menu-link' onSelect={() => callback()} >
+      <NavigationMenu.Link active={active} className='menu-link' onSelect={() => callback()} >
         {label}
       </NavigationMenu.Link>
     </NavigationMenu.Item>
@@ -26,7 +27,6 @@ export default function FunctionMenu({
   return (
       <NavigationMenu.Root className='menu' orientation={orientation}>
         <NavigationMenu.List className='menu-list'>{items}</NavigationMenu.List>
-        <NavigationMenu.Indicator className={'menu-indicator'} />
       </NavigationMenu.Root>
   );
 }

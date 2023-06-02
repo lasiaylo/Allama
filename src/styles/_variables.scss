@@ -7,10 +7,12 @@ $fade-in-color: #8c8a85;
 
 /* Site Margins */
 $site-width: 800px;
-$vertical-margins: 20px;
+$page-margin-top: 20px;
+$page-margin-bottom: 35px;
 $portrait-size: 140px;
 
 /* Gaps */
+$gap-x-large: 75px;
 $gap-large: 40px;
 $gap-med: 15px;
 $gap-small: 5px;
@@ -54,10 +56,6 @@ $gap-small: 5px;
   }
 }
 
-@keyframes fade-in {
-
-}
-
 /* Font Hierarchy */
 
 @mixin button {
@@ -67,7 +65,7 @@ $gap-small: 5px;
   color: $secondary-color;
   list-style: none;
   user-select: none;
-  animation: button-frames 1s steps(1, start);
+  //animation: button-frames 1s steps(1, start);
 }
 
 h1,

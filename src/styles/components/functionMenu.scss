@@ -4,7 +4,6 @@
 
 .menu-list {
   list-style: none;
-
 }
 
 .menu-link {
@@ -15,24 +14,8 @@
   &:hover {
     color: $primary-color;
   }
-}
 
-.menu-indicator {
-  top: 100%;
-  z-index: 1;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  height: 10px;
-  overflow: hidden;
-  background-color: aqua;
-  transition: width, transform 250ms ease;
-}
-
-.menu-indicator[data-state='visible'] {
-  animation: fadeIn 200ms ease;
-}
-
-.menu-indicator[data-state='hidden'] {
-  animation: fadeOut 200ms ease;
+  &[data-active] {
+    background-color: red;
+  }
 }
