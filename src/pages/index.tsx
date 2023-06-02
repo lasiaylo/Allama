@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql, Link } from 'gatsby';
+import { graphql, navigate } from 'gatsby';
 
 import '../styles/pages/index.scss';
 import { GatsbyImage } from 'gatsby-plugin-image';
@@ -42,7 +42,7 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
     portrait: { image },
   } = data.info.nodes[0];
 
-  const fallback = new Set(
+  const to = () => navigate(`/${new Set(
     data.works.nodes
       .map((n) => n.roles)
       .flat()
@@ -50,17 +50,16 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
   )
     .values()
     .next()
-    .value.toLowerCase();
+    .value.toLowerCase()}`);
 
   return (
-    <div className="site-container">
+    <div className="site-container" onClick={to} onScroll={to}>
       <div className="landing-page">
-        <Link to={`/${fallback}`}>
-          <Name firstName={firstName} lastName={lastName} />
-          <GatsbyImage className="portrait" image={image} alt="" />
-          <Contact email={email} phoneNumber={phoneNumber} />
-          <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
-        </Link>
+        <Name firstName={firstName} lastName={lastName} />
+        <GatsbyImage className="portrait" image={image} alt="" />
+        <Contact email={email} phoneNumber={phoneNumber} />
+        <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
+        <div className="fill"></div>
       </div>
     </div>
   );

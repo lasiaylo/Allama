@@ -29,10 +29,40 @@ $gap-small: 5px;
   font-display: swap;
 }
 
+/* Animations */
+@mixin blur-in($anim-name, $font-size, $line-height) {
+  $new-size: ($font-size * 1.091);
+  $line-height: $line-height * 0.9;
+  //$new-size: ($font-size * 2.09);
+
+  @keyframes #{$anim-name} {
+    0% {
+      font-family: 'Redaction 100', serif;
+      font-size: $new-size;
+      line-height: $line-height;
+      color: $fade-in-color;
+    }
+
+    50% {
+      max-width: 33ch;
+      font-family: 'Redaction 35', serif;
+      font-size: $new-size;
+      line-height: $line-height;
+      color: $primary-color;
+      letter-spacing: 0.21px;
+    }
+  }
+}
+
+@keyframes fade-in {
+
+}
+
 /* Font Hierarchy */
 
 @mixin button {
   font: 1rem/1.2 'Frame Text Trial', serif;
+
   //font: 1rem Redaction-Regular, serif;
 
   color: $secondary-color;
@@ -44,6 +74,7 @@ $gap-small: 5px;
 h1,
 h2,
 h3,
+h4,
 p,
 a,
 button,
@@ -60,15 +91,15 @@ h1 {
   //font: 1.3rem "Redaction 10", serif;
   font: 1.3rem/1.2 'Frame Head Trial', serif;
   font-weight: bold;
-  color: $primary-color;
-  animation: blur-in 0.1s steps(1, end);
 }
 
 h2 {
+  @include blur-in('h2-frames', 1.5rem, 1.2);
+
   margin: $gap-med 0;
-  font: 1.5rem 'Frame Head Trial', serif;
+  font: 1.5rem/1.2 'Frame Head Trial', serif;
   color: $primary-color;
-  animation: blur-in 0.1s steps(1, end);
+  animation: h2-frames 0.1s steps(1, end);
 }
 
 h3 {
@@ -76,28 +107,12 @@ h3 {
 }
 
 p {
-  width: 30ch;
-  //font: 1.094rem Redaction-Regular, serif;
-  font: 1rem/1.45 'Frame Text Trial', serif;
+  @include blur-in('p-frames', 1rem, 1.45);
+
+  max-width: 30ch;
+  font-family: 'Frame Text Trial', serif;
+  font-size: 1rem;
+  line-height: 1.45;
   color: $primary-color;
-  animation: blur-in 0.1s steps(1, end);
-}
-
-@keyframes blur-in {
-  0% {
-    font-family: 'Redaction 100', serif;
-    font-weight: 60;
-    color: $fade-in-color;
-    letter-spacing: -0.0024rem;
-  }
-
-  33% {
-    font-family: 'Redaction 35', serif;
-    color: $primary-color;
-    letter-spacing: 0;
-  }
-
-  66% {
-    font-family: 'Redaction 10', serif;
-  }
+  animation: p-frames 0.2s steps(1, start);
 }

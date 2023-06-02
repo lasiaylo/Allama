@@ -16,8 +16,10 @@ export default function WorksView({
         // objectFit={'contain'}
       />
       <h2>{name}</h2>
-      <p>{description}</p>
-      {/*<h4 className={'test'}>{description}</h4>*/}
+      <div className={'stack'}>
+        <p className={'test1'}>{description}</p>
+        {/*<p className={'test2'}>{description}</p>*/}
+      </div>
     </div>
   );
 }

@@ -87,6 +87,7 @@ export default function WorksPage({
         <Link to={'/'}>
           <div className="header">
             <Name firstName={firstName} lastName={lastName} />
+            <Name firstName={'.'} lastName={'.'} invisible={true} />
             <Contact email={email} phoneNumber={phoneNumber} />
           </div>
         </Link>
