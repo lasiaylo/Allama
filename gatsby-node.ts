@@ -8,6 +8,7 @@ export interface IWork {
   readonly roles: string[];
   readonly datePublished: string;
   readonly preview: { image: IGatsbyImageData };
+  readonly link: string;
 }
 
 interface IPersonalInfo {
@@ -55,6 +56,7 @@ export const createPages: GatsbyNode['createPages'] = async ({
           preview {
             image: gatsbyImageData(layout: CONSTRAINED)
           }
+          link
         }
       }
     }
