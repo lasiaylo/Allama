@@ -1,0 +1,54 @@
+@import '../variables';
+
+.isolate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(65%);
+  isolation: isolate;
+
+  .children {
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.noise {
+  width: 100%;
+  height: 60px;
+  background: radial-gradient(
+      circle at 0% 100%,
+      rgb(64 63 61 / 100%) 20%,
+      rgb(0 0 0 / 0%) 350%
+  ) no-repeat, url('../../../static/images/noise.svg');
+  filter: contrast(200%)  brightness(100%) invert(100%);
+  mix-blend-mode: screen;
+  animation: ink-fill 2s;
+
+  &:hover {
+    filter: contrast(350%)  brightness(1000%) opacity(100%);
+  }
+}
+
+//noinspection Stylelint
+@media all and (min-device-pixel-ratio: 0) and (resolution >= 0.001dpcm) {
+  .children {
+    filter: contrast(100%) brightness(1000%);
+
+  }
+  .noise {
+    filter: contrast(350%) brightness(1000%) opacity(0%);
+    mix-blend-mode: hard-light;
+  }
+}
+
+@keyframes ink-fill {
+  from {
+    filter: contrast(200%) brightness(1000%) opacity(0%);
+  }
+
+  to {
+    filter: contrast(350%)  brightness(1000%) opacity(100%);
+  }
+}

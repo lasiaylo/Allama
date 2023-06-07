@@ -7,7 +7,7 @@
   padding: $gap-small;
 
   &:hover {
-    background-color: $secondary-color;
+    background-color: $primary-color;
   }
 }
 
@@ -74,7 +74,6 @@
   .works-view {
     grid-area: view;
   }
-
 }
 
   .footer {

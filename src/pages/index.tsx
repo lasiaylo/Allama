@@ -56,6 +56,16 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
         .value.toLowerCase()}`
     );
 
+  const page = (
+    <div className="landing-page">
+      <Name firstName={firstName} lastName={lastName} />
+      <GatsbyImage className="portrait" image={image} alt="" />
+      <Contact email={email} phoneNumber={phoneNumber} />
+      <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
+    </div>
+  );
+
+
   useEffect(() => {
     window.addEventListener('wheel', to);
     return () => {
@@ -63,14 +73,9 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
     };
   }, []);
 
-  return (
+  return(
     <div className="site-container" onClick={to} onScroll={to}>
-      <div className="landing-page">
-        <Name firstName={firstName} lastName={lastName} />
-        <GatsbyImage className="portrait" image={image} alt="" />
-        <Contact email={email} phoneNumber={phoneNumber} />
-        <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
-      </div>
+      {page}
     </div>
   );
 }

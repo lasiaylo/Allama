@@ -1,5 +1,30 @@
 @import '../variables';
 
+.card-view {
+  perspective: 900px;
+}
+
 .preview {
   cursor: pointer;
+  animation: card-float-x 10s cubic-bezier(0.42, 0, 0.2, 1) alternate infinite;
+;
+  //animation: card-float 4s ease-in-out alternate infinite,
+}
+
+//@keyframes card-rotate {
+//  from {
+//  }
+//  to {
+//    transform:
+//  }
+//}
+
+@keyframes card-float-x {
+  from {
+    transform: rotateX(-1deg) rotateY(-2deg) rotateZ(0deg)  translate3d(-2px, 5px, -5px);;
+  }
+
+  to {
+    transform: translate3d(2px, -3px, 10px) rotateX(2deg) rotateY(4deg) rotateZ(-2deg);
+  }
 }
