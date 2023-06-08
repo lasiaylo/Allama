@@ -14,6 +14,7 @@ import slugify from 'slugify';
 import Noise from '../components/noise';
 import Name from '../components/name';
 import Contact from '../components/contact';
+import Sidebar from '../components/sidebar';
 
 const RoleSelector = memo(function RoleSelector({
   roles,
@@ -38,53 +39,6 @@ const RoleSelector = memo(function RoleSelector({
   );
 },
 _.isEqual);
-
-function Sidebar({
-  works,
-  callback,
-  activeWork,
-}: {
-  works: IWork[];
-  callback: Function;
-  activeWork: IWork;
-}) {
-  const yearToWork: Record<string, IWork[]> = {};
-  works.forEach((work) => {
-    const year = new Date(work.datePublished).getFullYear().toString();
-    if (yearToWork[year] === undefined) {
-      yearToWork[year] = [];
-    }
-    yearToWork[year].push(work);
-  });
-
-  const sidebar = Object.keys(yearToWork)
-    .sort((a, b) => +new Date(b) - +new Date(a))
-    .map((year) => {
-      const section = yearToWork[year].map((work) => {
-        return (
-          <FunctionMenu
-            orientation={'vertical'}
-            buttons={Array(5).fill({
-              label: work.name,
-              active: work === activeWork,
-              callback: () => {
-                callback(work);
-              },
-            })}
-          />
-        );
-      });
-      return (
-        <div className={'year-container'} key={year}>
-          <h3 className={'year'}>{year}</h3>
-          {section}
-        </div>
-      );
-    });
-
-  return <div className="sidebar">{sidebar}</div>;
-}
-
 export default function WorksPage({
   pageContext: {
     roles,
@@ -116,15 +70,14 @@ export default function WorksPage({
 
   return (
     <DirectionProvider dir="rtl">
-      <div className="site-container">
+      <div className="site-container" key={'abc'}>
         <Link to={'/'}>
           <Noise>
-          <div className="header">
-
-            <Name firstName={firstName} lastName={lastName} />
-            {/*<Name firstName={'.'} lastName={'.'} invisible={true} />*/}
-            <Contact email={email} phoneNumber={phoneNumber} />
-          </div>
+            <div className="header">
+              <Name firstName={firstName} lastName={lastName} />
+              {/*<Name firstName={'.'} lastName={'.'} invisible={true} />*/}
+              <Contact email={email} phoneNumber={phoneNumber} />
+            </div>
           </Noise>
         </Link>
         <Separator className="separator" />

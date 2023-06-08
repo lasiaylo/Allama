@@ -17,23 +17,15 @@ export default function WorksView(work: React.PropsWithChildren<IWork>) {
     leave: { opacity: 0 },
   });
 
-  return (
-    <>
-      {transition((style, item) => (
-        <animated.div className={'works-view'} style={style}>
-          <a className="card-view" href={item.link} target="_blank">
-            <GatsbyImage
-              className="preview"
-              alt=""
-              image={item.preview.image}
-            />
-          </a>
-          <h2>{item.name}</h2>
-          <div className={'stack'}>
-            <p>{item.description}</p>
-          </div>
-        </animated.div>
-      ))}
-    </>
-  );
+  return transition((style, item) => (
+    <animated.div className={'works-view'} style={style}>
+      <a className="card-view" href={item.link} target="_blank">
+        <GatsbyImage className="preview" alt="" image={item.preview.image} />
+      </a>
+      <h2>{item.name}</h2>
+      <div className={'stack'}>
+        <p>{item.description}</p>
+      </div>
+    </animated.div>
+  ));
 }

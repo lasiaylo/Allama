@@ -74,7 +74,7 @@ export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
   }, []);
 
   return(
-    <div className="site-container" onClick={to} onScroll={to}>
+    <div className="site-container" onClick={to} onScroll={to} key={'abc'}>
       {page}
     </div>
   );
