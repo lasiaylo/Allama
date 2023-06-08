@@ -1,8 +1,8 @@
-import { IWork } from '../../gatsby-node';
-import FunctionMenu from './functionMenu';
+import FunctionMenu from './util/functionMenu';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useSpringRef } from 'react-spring';
+import { IWork } from '../util/page/IndexUtils';
 
 export default function Sidebar({
   works,

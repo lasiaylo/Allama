@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
-import '../styles/components/functionMenu.scss';
+import '../../styles/components/functionMenu.scss';
 
 interface Button {
   label: string;
