@@ -1,18 +1,21 @@
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { PageProps } from 'gatsby';
-import { graphql, navigate } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import '../styles/pages/index.scss';
+import Header, { IContact } from '../components/header';
+import { Separator } from '@radix-ui/react-separator';
+import Sidebar from '../components/sidebar';
+import WorksView from '../components/worksView';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import Name from '../components/name';
-import Contact from '../components/contact';
-import { ToNonbreakHyphen } from '../util/StringUtils';
-import { isNonNull } from '../util/TypeUtils';
+import RoleSelector from '../components/roleSelector';
+import mapWorks, { IWork } from '../util/page/IndexUtils';
+import { startCase } from 'lodash';
 
 export const query = graphql`
   query Index {
-    info: allContentfulPersonalInfo(limit: 1) {
+    infoResults: allContentfulPersonalInfo(limit: 1) {
       nodes {
         firstName
         lastName
@@ -24,58 +27,57 @@ export const query = graphql`
         }
       }
     }
-    works: allContentfulWork {
+
+    workResults: allContentfulWork {
       nodes {
         roles
+        name
+        datePublished
+        description
+        preview {
+          image: gatsbyImageData(layout: CONSTRAINED)
+        }
+        link
       }
     }
   }
 `;
 
-export default function IndexPage({ data }: PageProps<Queries.IndexQuery>) {
-  const {
-    firstName,
-    lastName,
-    email,
-    phoneNumber,
-    blurb,
-    // @ts-ignore Fix another day
-    portrait: { image },
-  } = data.info.nodes[0];
-
-  const to = () =>
-    navigate(
-      `/${new Set(
-        data.works.nodes
-          .map((n) => n.roles)
-          .flat()
-          .filter(isNonNull) as string[]
-      )
-        .values()
-        .next()
-        .value.toLowerCase()}`
-    );
-
-  const page = (
-    <div className="landing-page">
-      <Name firstName={firstName} lastName={lastName} />
-      <GatsbyImage className="portrait" image={image} alt="" />
-      <Contact email={email} phoneNumber={phoneNumber} />
-      <p className="blurb">{ToNonbreakHyphen(blurb ?? '')}</p>
-    </div>
-  );
-
+export default function IndexPage({ data: {infoResults, workResults}, location: {hash} }: PageProps<Queries.IndexQuery>) {
+  const info: IContact = infoResults.nodes[0] as IContact;
+  const works: IWork[] = workResults.nodes.filter((i): i is IWork => {
+    return typeof i === 'object';
+  });
+  const rolesToWorks: Record<string, IWork[]> = mapWorks(works);
+  const roles = Object.keys(rolesToWorks);
+  const [activeRole, setActiveRole] = useState(roles[0]);
+  const [activeWork, setActiveWork] = useState(rolesToWorks[activeRole][0]);
 
   useEffect(() => {
-    window.addEventListener('wheel', to);
-    return () => {
-      window.removeEventListener('wheel', to);
-    };
-  }, []);
+    const pageRole = startCase(hash.replace('#', ''));
+    if (rolesToWorks.hasOwnProperty(pageRole)) {
+      setActiveRole(pageRole);
+      setActiveWork(rolesToWorks[pageRole][0])
+    }
+  }, [hash]);
 
-  return(
-    <div className="site-container" onClick={to} onScroll={to} key={'abc'}>
-      {page}
+  // TODO: url to active role/work
+  return (
+    <div className="site-container">
+      <Header info={info}/>
+      <Separator className="separator" />
+      <RoleSelector roles={roles} active={activeRole}/>
+      <div className="works-body">
+        <Sidebar works={rolesToWorks[activeRole]} activeWork={activeWork} callback={setActiveWork} />
+        <WorksView {...activeWork} />
+      </div>
+      <div className="footer">
+        <GatsbyImage className="chatbox-image" alt="" image={info.portrait.image} />
+        <p className="chatbox">
+          How can I help?
+          <br /> Let me know.{' '}
+        </p>
+      </div>
     </div>
   );
 }

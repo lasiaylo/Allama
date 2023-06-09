@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { useEffect } from 'react';
-import { IWork } from '../../gatsby-node';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import '../styles/components/worksView.scss';
 import { animated, useSpringRef, useTransition } from 'react-spring';
+import { IWork } from '../util/page/IndexUtils';
 
 export default function WorksView(work: React.PropsWithChildren<IWork>) {
   const transRef = useSpringRef();

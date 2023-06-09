@@ -1,0 +1,20 @@
+@import '../variables';
+
+.sidebar {
+  .menu-item {
+    padding-bottom: $gap-med;
+
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  .menu-header {
+    padding-bottom: $gap-small;
+    color: $primary-color;
+
+    &:not(:first-of-type) {
+      margin-top: $gap-large;
+    }
+  }
+}
