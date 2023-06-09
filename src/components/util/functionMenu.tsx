@@ -2,31 +2,43 @@ import * as React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import '../../styles/components/functionMenu.scss';
+import { animated, useTrail } from 'react-spring';
 
-interface Button {
+export interface IButton {
   label: string;
   active: boolean;
-  callback: Function;
+  callback?: Function;
 }
 
-type PropTypes  = NavigationMenuProps & {
-  buttons: Button[];
-}
+type PropTypes = NavigationMenuProps & {
+  buttons: IButton[];
+};
 
-export default function FunctionMenu({
-  buttons,
-  orientation
-}: PropTypes) {
-  const items = buttons.map(({ label, active,  callback }, index) => (
-    <NavigationMenu.Item className='menu-item' key={index}>
-      <NavigationMenu.Link active={active} className='menu-link' onSelect={() => callback()} >
-        {label}
-      </NavigationMenu.Link>
-    </NavigationMenu.Item>
-  ));
+export default function FunctionMenu({ buttons, orientation }: PropTypes) {
+  const trails = useTrail(buttons.length, {
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    delay: 100,
+  });
+
+  const items = trails.map((style, i) => {
+    const { label, active, callback } = buttons[i];
+
+    return callback ? (
+      <NavigationMenu.Item className="menu-item" key={i}>
+        <NavigationMenu.Link
+          active={active}
+          className="menu-link"
+          onSelect={callback ? () => callback() : undefined}
+        >
+          <animated.div style={style}>{label}</animated.div>
+        </NavigationMenu.Link>
+      </NavigationMenu.Item>
+    ) : <animated.h3 style={style} className='menu-header'>{label}</animated.h3>;
+  });
   return (
-      <NavigationMenu.Root className='menu' orientation={orientation}>
-        <NavigationMenu.List className='menu-list'>{items}</NavigationMenu.List>
-      </NavigationMenu.Root>
+    <NavigationMenu.Root className="menu" orientation={orientation}>
+      <NavigationMenu.List className="menu-list">{items}</NavigationMenu.List>
+    </NavigationMenu.Root>
   );
 }

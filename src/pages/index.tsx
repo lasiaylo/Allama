@@ -64,7 +64,7 @@ export default function IndexPage({ data: {infoResults, workResults}, location: 
   // TODO: url to active role/work
   return (
     <div className="site-container">
-      <Header {...info}/>
+      <Header info={info}/>
       <Separator className="separator" />
       <RoleSelector roles={roles} active={activeRole}/>
       <div className="works-body">

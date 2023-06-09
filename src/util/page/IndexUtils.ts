@@ -12,7 +12,6 @@ export interface IWork {
 
 const mapWorks = _.memoize((works: IWork[]) => {
   const rolesToWorks: Record<string, IWork[]> = {};
-  console.log('asdladkjlskj');
   // TODO: Use reduce
   works.forEach((work) => {
     work.roles.forEach((role) => {

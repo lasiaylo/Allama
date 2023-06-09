@@ -13,11 +13,10 @@ export interface IContact {
 }
 
 export default function Header({
-  firstName,
-  lastName,
-  email,
-  phoneNumber,
-}: IContact) {
+  info: { firstName, lastName, email, phoneNumber },
+}: {
+  info: IContact;
+}) {
   return (
     <div className="header">
       <Name firstName={firstName} lastName={lastName} />

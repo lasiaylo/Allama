@@ -67,26 +67,8 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   grid-column-gap: $gap-large;
   margin-bottom: $gap-x-large;
 
-  .sidebar {
+  .side-bar {
     grid-area: sidebar;
-
-    .menu-item {
-      padding-bottom: $gap-med;
-
-      &:last-child {
-        padding-bottom: 0;
-      }
-    }
-
-    .year-container:not(:first-child) {
-      margin-top: $gap-large;
-    }
-
-    .year {
-      padding-bottom: $gap-small;
-      color: $primary-color;
-      //font-style: italic;
-    }
   }
 
   .works-view {

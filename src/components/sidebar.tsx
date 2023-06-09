@@ -1,8 +1,9 @@
-import FunctionMenu from './util/functionMenu';
+import FunctionMenu, { IButton } from './util/functionMenu';
 import * as React from 'react';
 import { useEffect } from 'react';
 import { useSpringRef } from 'react-spring';
 import { IWork } from '../util/page/IndexUtils';
+import '../styles/components/sidebar.scss';
 
 export default function Sidebar({
   works,
@@ -28,37 +29,28 @@ export default function Sidebar({
     yearToWork[year].push(work);
   });
 
-  // const transition = useTransition(yearToWork, {
-  //   from: { opacity: 1 },
-  //   to: { opacity: 1 },
-  //   leave: { opacity: 0 },
-  // });
-
-  const sidebar = Object.keys(yearToWork)
+  const buttons = Object.keys(yearToWork)
     .sort((a, b) => +new Date(b) - +new Date(a))
-    .map((year) => {
-      const section = yearToWork[year].map((work) => {
-        return (
-          <FunctionMenu
-            orientation={'vertical'}
-            buttons={Array(5).fill({
-              label: work.name,
-              active: work === activeWork,
-              callback: () => {
-                callback(work);
-              },
-            })}
-          />
-        );
-      });
-      return (
-        <div className={'year-container'} key={year}>
-          <h3 className={'year'}>{year}</h3>
-          {section}
-        </div>
-      );
-    });
+    .reduce<IButton[]>((acc, year) => {
+      return [
+        ...acc,
+        {
+          label: year,
+          active: false,
+        },
+        ...yearToWork[year].map((work) => ({
+          label: work.name,
+          active: work === activeWork,
+          callback: () => {
+            callback(work);
+          },
+        })),
+      ];
+    }, []);
 
-  // return transition((style, data) => {
-  return <div className="sidebar">{sidebar}</div>;
+  return (
+    <div className="sidebar">
+      <FunctionMenu orientation={'vertical'} buttons={buttons} />
+    </div>
+  );
 }
