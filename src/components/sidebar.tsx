@@ -1,25 +1,23 @@
 import FunctionMenu, { IButton } from './util/functionMenu';
 import * as React from 'react';
-import { useEffect } from 'react';
-import { useSpringRef } from 'react-spring';
+import { SpringRef } from 'react-spring';
 import { IWork } from '../util/page/IndexUtils';
 import '../styles/components/sidebar.scss';
+
+type PropTypes = {
+  works: IWork[];
+  callback: Function;
+  activeWork: IWork;
+  springRef: SpringRef;
+};
 
 export default function Sidebar({
   works,
   callback,
   activeWork,
-}: {
-  works: IWork[];
-  callback: Function;
-  activeWork: IWork;
-}) {
-  const transRef = useSpringRef();
-  useEffect(() => {
-    transRef.start();
-  }, [works]);
+  springRef,
+}: PropTypes) {
   const yearToWork: Record<string, IWork[]> = {};
-
   // TODO: Convert to reduce
   works.forEach((work) => {
     const year = new Date(work.datePublished).getFullYear().toString();
@@ -50,7 +48,11 @@ export default function Sidebar({
 
   return (
     <div className="sidebar">
-      <FunctionMenu orientation={'vertical'} buttons={buttons} />
+      <FunctionMenu
+        orientation={'vertical'}
+        buttons={buttons}
+        springRef={springRef}
+      />
     </div>
   );
 }

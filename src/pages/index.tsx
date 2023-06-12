@@ -6,12 +6,13 @@ import { graphql } from 'gatsby';
 import '../styles/pages/index.scss';
 import Header, { IContact } from '../components/header';
 import { Separator } from '@radix-ui/react-separator';
-import Sidebar from '../components/sidebar';
 import WorksView from '../components/worksView';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import RoleSelector from '../components/roleSelector';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
+import RoleSelector from '../components/roleSelector';
+import { useSpringRef } from 'react-spring';
+import Sidebar from '../components/sidebar';
 
 export const query = graphql`
   query Index {
@@ -43,7 +44,10 @@ export const query = graphql`
   }
 `;
 
-export default function IndexPage({ data: {infoResults, workResults}, location: {hash} }: PageProps<Queries.IndexQuery>) {
+export default function IndexPage({
+  data: { infoResults, workResults },
+  location: { hash },
+}: PageProps<Queries.IndexQuery>) {
   const info: IContact = infoResults.nodes[0] as IContact;
   const works: IWork[] = workResults.nodes.filter((i): i is IWork => {
     return typeof i === 'object';
@@ -52,27 +56,41 @@ export default function IndexPage({ data: {infoResults, workResults}, location: 
   const roles = Object.keys(rolesToWorks);
   const [activeRole, setActiveRole] = useState(roles[0]);
   const [activeWork, setActiveWork] = useState(rolesToWorks[activeRole][0]);
+  const springRef = useSpringRef();
 
   useEffect(() => {
     const pageRole = startCase(hash.replace('#', ''));
     if (rolesToWorks.hasOwnProperty(pageRole)) {
       setActiveRole(pageRole);
-      setActiveWork(rolesToWorks[pageRole][0])
+      setActiveWork(rolesToWorks[pageRole][0]);
     }
   }, [hash]);
 
+  useEffect(() => {
+    console.log('index useEffect!')
+    springRef.start();
+  }, [activeRole, activeWork]);
   // TODO: url to active role/work
   return (
     <div className="site-container">
-      <Header info={info}/>
+      <Header info={info} />
       <Separator className="separator" />
-      <RoleSelector roles={roles} active={activeRole}/>
+      <RoleSelector roles={roles} active={activeRole} />
       <div className="works-body">
-        <Sidebar works={rolesToWorks[activeRole]} activeWork={activeWork} callback={setActiveWork} />
+        <Sidebar
+          works={rolesToWorks[activeRole]}
+          activeWork={activeWork}
+          callback={setActiveWork}
+          springRef={springRef}
+        />
         <WorksView {...activeWork} />
       </div>
       <div className="footer">
-        <GatsbyImage className="chatbox-image" alt="" image={info.portrait.image} />
+        <GatsbyImage
+          className="chatbox-image"
+          alt=""
+          image={info.portrait.image}
+        />
         <p className="chatbox">
           How can I help?
           <br /> Let me know.{' '}

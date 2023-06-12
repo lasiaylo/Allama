@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { memo } from 'react';
 import FunctionMenu from './util/functionMenu';
 import { navigate } from 'gatsby';
-import * as _ from 'lodash';
 
-const RoleSelector = memo(function RoleSelector({
+const RoleSelector = function RoleSelector({
   roles,
   active,
 }: {
@@ -25,7 +23,5 @@ const RoleSelector = memo(function RoleSelector({
       />
     </div>
   );
-},
-_.isEqual);
-
+};
 export default RoleSelector;
