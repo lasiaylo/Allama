@@ -8,8 +8,9 @@ import { IWork } from '../util/page/IndexUtils';
 export default function WorksView(work: React.PropsWithChildren<IWork>) {
   const transRef = useSpringRef();
   useEffect(() => {
+    console.log('beep boop');
     transRef.start();
-  }, [work]);
+  }, [work.name]);
   const transition = useTransition(work, {
     ref: transRef,
     from: { opacity: 0 },

@@ -70,7 +70,6 @@ export default function IndexPage({
     console.log('index useEffect!')
     springRef.start();
   }, [activeRole, activeWork]);
-  // TODO: url to active role/work
   return (
     <div className="site-container">
       <Header info={info} />

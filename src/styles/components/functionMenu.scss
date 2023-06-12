@@ -13,11 +13,11 @@
 
   &:hover {
     color: $background-color;
-    background-color: $primary-color;
+    background-color: $selected-color;
   }
 
   &[data-active] {
     color: $background-color;
-    background-color: $primary-color;
+    background-color: $selected-color;
   }
 }
