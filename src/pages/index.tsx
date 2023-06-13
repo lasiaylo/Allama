@@ -7,12 +7,12 @@ import '../styles/pages/index.scss';
 import Header, { IContact } from '../components/header';
 import { Separator } from '@radix-ui/react-separator';
 import WorksView from '../components/worksView';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
 import RoleSelector from '../components/roleSelector';
 import { useSpringRef } from 'react-spring';
 import Sidebar from '../components/sidebar';
+import Footer from '../components/footer';
 
 export const query = graphql`
   query Index {
@@ -25,6 +25,11 @@ export const query = graphql`
         blurb
         portrait {
           image: gatsbyImage(width: 140, height: 140)
+        }
+        portraitVideo {
+          file {
+            url
+          }
         }
       }
     }
@@ -67,9 +72,19 @@ export default function IndexPage({
   }, [hash]);
 
   useEffect(() => {
-    console.log('index useEffect!')
     springRef.start();
   }, [activeRole, activeWork]);
+  // const isBrowser = typeof document !== "undefined"
+  // if (isBrowser) {
+  //   const vid = document.createElement("video")
+  //   vid.src = info.portraitVideo.file.url;
+  //   vid.crossOrigin = 'anonymous'
+  //   vid.loop = true
+  //   vid.muted = true
+  //   vid.playsInline = true
+  //   return vid
+  // }
+
   return (
     <div className="site-container">
       <Header info={info} />
@@ -85,11 +100,7 @@ export default function IndexPage({
         <WorksView {...activeWork} />
       </div>
       <div className="footer">
-        <GatsbyImage
-          className="chatbox-image"
-          alt=""
-          image={info.portrait.image}
-        />
+        <Footer url={info.portraitVideo.file.url} />
         <p className="chatbox">
           How can I help?
           <br /> Let me know.{' '}

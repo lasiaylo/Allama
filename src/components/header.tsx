@@ -10,6 +10,7 @@ export interface IContact {
   readonly phoneNumber: string;
   readonly blurb: string;
   readonly portrait: { image: IGatsbyImageData };
+  readonly portraitVideo: { file: { url: string } };
 }
 
 export default function Header({
