@@ -13,6 +13,7 @@ import RoleSelector from '../components/roleSelector';
 import { useSpringRef } from 'react-spring';
 import Sidebar from '../components/sidebar';
 import Footer from '../components/footer';
+import Noise from '../components/noise';
 
 export const query = graphql`
   query Index {
@@ -101,10 +102,12 @@ export default function IndexPage({
       </div>
       <div className="footer">
         <Footer url={info.portraitVideo.file.url} />
-        <p className="chatbox">
+        <Noise className={'chatbox'}>
+        <p>
           How can I help?
           <br /> Let me know.{' '}
         </p>
+        </Noise>
       </div>
     </div>
   );
