@@ -1,10 +1,10 @@
 /* Palette */
 //$background-color: #fafbff;
 $background-color: #FFFF;
-$primary-color: #403f3d;
+$primary-color: #1c1c1b;
 $secondary-color: #868686;
 $fade-in-color: #8c8a85;
-$selected-color: #868686;
+$selected-color: $secondary-color;
 $highlight-color: #467a53;
 
 
@@ -68,7 +68,6 @@ $gap-small: 5px;
   color: $secondary-color;
   list-style: none;
   user-select: none;
-  //animation: button-frames 1s steps(1, start);
 }
 
 h1,
@@ -99,7 +98,6 @@ h2 {
   margin: $gap-med 0;
   font: 1.5rem/1.2 'Frame Head Trial', serif;
   color: $primary-color;
-  animation: h2-frames 0.1s steps(1, end);
 }
 
 h3 {
@@ -114,5 +112,4 @@ p {
   font-size: 1rem;
   line-height: 1.45;
   color: $primary-color;
-  animation: p-frames 0.2s steps(1, start);
 }

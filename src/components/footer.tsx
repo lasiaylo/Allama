@@ -11,8 +11,6 @@ export default function Footer({ url }: { url: string }) {
       setPlay(true);
       clearTimeout(timer);
       timer = setTimeout(() => setPlay(false), 200);
-      // videoRef?.current?.seekTo(event.clientX / window.innerWidth);
-      console.log(event.clientX / window.innerWidth);
     });
   });
   return (

@@ -4,6 +4,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import '../styles/components/worksView.scss';
 import { animated, useSpringRef, useTransition } from 'react-spring';
 import { IWork } from '../util/page/IndexUtils';
+import Noise from './noise';
 
 export default function WorksView(work: React.PropsWithChildren<IWork>) {
   const transRef = useSpringRef();
@@ -22,10 +23,12 @@ export default function WorksView(work: React.PropsWithChildren<IWork>) {
       <a className="card-view" href={item.link} target="_blank">
         <GatsbyImage className="preview" alt="" image={item.preview.image} />
       </a>
-      <h2>{item.name}</h2>
-      <div className={'stack'}>
+      <Noise>
+        <h2>{item.name}</h2>
+      </Noise>
+      <Noise>
         <p>{item.description}</p>
-      </div>
+      </Noise>
     </animated.div>
   ));
 }

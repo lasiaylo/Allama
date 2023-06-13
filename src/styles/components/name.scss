@@ -3,7 +3,6 @@
 @mixin name-animate {
   color: $primary-color;
   opacity: 1;
-  animation: h1-frames 0.1s steps(1, end);
 
   &.invisible {
     color: $background-color;

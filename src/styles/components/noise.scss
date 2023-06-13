@@ -1,10 +1,17 @@
 @import '../variables';
 
+$empty: contrast(0%) brightness(9000%) opacity(50.5%);
+$filled: contrast(180%) brightness(100000%) opacity(100%);
+
+::selection {
+  background-color: #232623;
+  -webkit-text-fill-color: $highlight-color;
+
+}
 .isolate {
   position: relative;
-  width: 100%;
-  height: 100%;
-  filter: grayscale(65%);
+  display: block;
+  filter: grayscale(75%);
   isolation: isolate;
 
   .children {
@@ -15,40 +22,41 @@
 }
 
 .noise {
-  width: 100%;
-  height: 60px;
-  background: radial-gradient(
-      circle at 0% 100%,
-      rgb(64 63 61 / 100%) 20%,
-      rgb(0 0 0 / 0%) 350%
-  ) no-repeat, url('../../../static/images/noise.svg');
-  filter: contrast(200%)  brightness(100%) invert(100%);
-  mix-blend-mode: screen;
-  animation: ink-fill 2s;
-
-  &:hover {
-    filter: contrast(350%)  brightness(1000%) opacity(100%);
-  }
+  background:
+    //linear-gradient(rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
+    radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
+      no-repeat,
+    url('../../../static/images/noise.svg');
+  filter: $filled;
+  background-clip: text;
+  animation: ink-fill 8s;
+  animation-delay: -2.45s;
+  -webkit-text-fill-color: transparent;
 }
 
 //noinspection Stylelint
 @media all and (min-device-pixel-ratio: 0) and (resolution >= 0.001dpcm) {
-  .children {
-    filter: contrast(100%) brightness(1000%);
-
-  }
   .noise {
-    filter: contrast(350%) brightness(1000%) opacity(0%);
-    mix-blend-mode: hard-light;
+    filter: $filled;
   }
 }
 
 @keyframes ink-fill {
   from {
-    filter: contrast(200%) brightness(1000%) opacity(0%);
+    filter: $empty;
   }
 
   to {
-    filter: contrast(350%)  brightness(1000%) opacity(100%);
+    filter: $filled;
+  }
+}
+
+@keyframes ink-leave {
+  from {
+    filter: $filled;
+  }
+
+  to {
+    filter: $empty;
   }
 }

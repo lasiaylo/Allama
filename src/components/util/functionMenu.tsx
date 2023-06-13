@@ -4,6 +4,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import '../../styles/components/functionMenu.scss';
 import { animated, SpringRef, useTrail, useTransition } from 'react-spring';
+import Noise from '../noise';
 
 export interface IButton {
   label: string;
@@ -48,13 +49,17 @@ export default function FunctionMenu({
               className="menu-link"
               onSelect={callback ? () => callback() : undefined}
             >
+              <Noise>
               <animated.div style={style}>{label}</animated.div>
+              </Noise>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
         ) : (
+          // <Noise>
           <animated.h3 style={style} className="menu-header">
             {label}
           </animated.h3>
+          // </Noise>
         );
       })
     : trails.map((style, i) => {
