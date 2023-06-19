@@ -40,7 +40,7 @@ function NoiseItem({
 
   return (
     <animated.div
-      className={'noise-item'}
+      className={`noise-item ${className}`}
       style={{
         filter: to(
           [contrast, brightness, opacity],
@@ -83,7 +83,7 @@ export default function NoiseTransition({
         </NoiseItem>
       )}
       <NoiseItem
-        className={'curr start'}
+        className={className}
         showing={true}
         id={currID}
       >
