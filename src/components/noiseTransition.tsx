@@ -16,7 +16,7 @@ function NoiseItem({
   id: string;
 }>) {
   const fillConfig = {
-    duration: 6000,
+    duration: 7000,
     progress: 0.6,
   };
   const emptyConfig = {

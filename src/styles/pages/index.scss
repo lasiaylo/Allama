@@ -81,6 +81,10 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   display: flex;
   margin-top: auto;
 
+  .chatbox-video {
+    animation: fade 6s
+  }
+
   .chatbox {
     position: relative;
     top: 0.46em; // Align baseline with image
