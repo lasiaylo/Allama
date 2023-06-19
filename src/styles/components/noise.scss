@@ -4,10 +4,10 @@ $empty: contrast(0%) brightness(9000%) opacity(50.5%);
 $filled: contrast(180%) brightness(100000%) opacity(100%);
 
 ::selection {
-  background-color: #232623;
-  -webkit-text-fill-color: $highlight-color;
-
+  background-color: #1a1515;
+  -webkit-text-fill-color: $background-color;
 }
+
 .isolate {
   position: relative;
   display: block;
@@ -33,6 +33,24 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
   animation-delay: -2.45s;
   -webkit-text-fill-color: transparent;
 }
+
+
+.noise-transition {
+  display: grid;
+  isolation: isolate;
+}
+
+.noise-item {
+  grid-area: 1/1;
+  background:
+    //linear-gradient(rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
+    radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
+    no-repeat,
+    url('../../../static/images/noise.svg');
+    -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 
 //noinspection Stylelint
 @media all and (min-device-pixel-ratio: 0) and (resolution >= 0.001dpcm) {

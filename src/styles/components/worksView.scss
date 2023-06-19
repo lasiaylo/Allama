@@ -4,6 +4,12 @@
   perspective: 900px;
 }
 
+.works-view{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 .preview {
   cursor: pointer;
   animation: card-float-x 10s cubic-bezier(0.42, 0, 0.2, 1) alternate infinite;
@@ -11,13 +17,6 @@
   //animation: card-float 4s ease-in-out alternate infinite,
 }
 
-//@keyframes card-rotate {
-//  from {
-//  }
-//  to {
-//    transform:
-//  }
-//}
 
 @keyframes card-float-x {
   from {

@@ -2,6 +2,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 import _ from 'lodash';
 
 export interface IWork {
+  readonly id: string;
   readonly name: string;
   readonly description: string;
   readonly roles: string[];

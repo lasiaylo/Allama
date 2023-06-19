@@ -9,15 +9,12 @@
 .menu-link {
   @include button;
 
-  color: $secondary-color;
-
   &:hover {
-    color: $background-color;
     background-color: $selected-color;
   }
 
   &[data-active] {
-    color: $background-color;
+    //color: $background-color;
     background-color: $selected-color;
   }
 }

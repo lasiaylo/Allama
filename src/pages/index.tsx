@@ -11,9 +11,9 @@ import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
 import RoleSelector from '../components/roleSelector';
 import { useSpringRef } from 'react-spring';
-import Sidebar from '../components/sidebar';
 import Footer from '../components/footer';
 import Noise from '../components/noise';
+import Sidebar from '../components/sidebar';
 
 export const query = graphql`
   query Index {
@@ -37,6 +37,7 @@ export const query = graphql`
 
     workResults: allContentfulWork {
       nodes {
+        id
         roles
         name
         datePublished
@@ -60,12 +61,13 @@ export default function IndexPage({
   });
   const rolesToWorks: Record<string, IWork[]> = mapWorks(works);
   const roles = Object.keys(rolesToWorks);
-  const [activeRole, setActiveRole] = useState(roles[0]);
+
+  const pageRole = startCase(hash.replace('#', ''));
+  const [activeRole, setActiveRole] = useState(rolesToWorks.hasOwnProperty(pageRole) ? pageRole : roles[0]);
   const [activeWork, setActiveWork] = useState(rolesToWorks[activeRole][0]);
   const springRef = useSpringRef();
 
   useEffect(() => {
-    const pageRole = startCase(hash.replace('#', ''));
     if (rolesToWorks.hasOwnProperty(pageRole)) {
       setActiveRole(pageRole);
       setActiveWork(rolesToWorks[pageRole][0]);
@@ -75,16 +77,6 @@ export default function IndexPage({
   useEffect(() => {
     springRef.start();
   }, [activeRole, activeWork]);
-  // const isBrowser = typeof document !== "undefined"
-  // if (isBrowser) {
-  //   const vid = document.createElement("video")
-  //   vid.src = info.portraitVideo.file.url;
-  //   vid.crossOrigin = 'anonymous'
-  //   vid.loop = true
-  //   vid.muted = true
-  //   vid.playsInline = true
-  //   return vid
-  // }
 
   return (
     <div className="site-container">

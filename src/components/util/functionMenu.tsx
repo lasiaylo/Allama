@@ -34,7 +34,7 @@ export default function FunctionMenu({
     from: { opacity: 0 },
     enter: { opacity: 1 },
     // leave: { opacity: 0 },
-    exitBeforeEnter: true,
+    // exitBeforeEnter: true,
     trail: delay,
   });
 
@@ -55,11 +55,11 @@ export default function FunctionMenu({
             </NavigationMenu.Link>
           </NavigationMenu.Item>
         ) : (
-          // <Noise>
+          <Noise>
           <animated.h3 style={style} className="menu-header">
             {label}
           </animated.h3>
-          // </Noise>
+          </Noise>
         );
       })
     : trails.map((style, i) => {
