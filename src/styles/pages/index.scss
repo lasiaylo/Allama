@@ -33,6 +33,7 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   height: 1px;
   margin-bottom: $gap-med;
   background-color: $primary-color;
+  animation: fade 6s
 }
 
 .role-selector {
@@ -86,4 +87,15 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
     margin-top: auto;
     margin-left: $gap-large;
   }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1
+  }
+
 }
