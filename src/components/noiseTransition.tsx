@@ -1,20 +1,15 @@
 import * as React from 'react';
 import { ReactNode, useState } from 'react';
 import '../styles/components/noise.scss';
-import { animated, SpringRef, to, useSpring } from 'react-spring';
+import { animated, to, useSpring } from 'react-spring';
 import { easings } from '@react-spring/web';
 import { isEmpty } from '../util/StringUtils';
-
-interface INoise {
-  springRef: SpringRef;
-  component: ReactNode;
-}
 
 function NoiseItem({
   className,
   children,
   showing,
-  id
+  id,
 }: React.PropsWithChildren<{
   className?: string;
   showing: boolean;
@@ -30,13 +25,16 @@ function NoiseItem({
     easing: easings.easeInCubic,
   };
 
-  const [{contrast, brightness, opacity}] = useSpring(() => ({
-    from:  { brightness: 9000, contrast: 0, opacity: 50.5 },
-    to: { brightness: 100000, contrast: 180, opacity: 100 },
-    reverse: !showing,
-    config: showing ? fillConfig : emptyConfig,
-    reset: true,
-  }), [id]);
+  const [{ contrast, brightness, opacity }] = useSpring(
+    () => ({
+      from: { brightness: 9000, contrast: 0, opacity: 50.5 },
+      to: { brightness: 100000, contrast: 180, opacity: 100 },
+      reverse: !showing,
+      config: showing ? fillConfig : emptyConfig,
+      reset: true,
+    }),
+    [id]
+  );
 
   return (
     <animated.div
