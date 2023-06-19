@@ -2,6 +2,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 import Name from './name';
 import Contact from './contact';
 import * as React from 'react';
+import Noise from './noise';
 
 export interface IContact {
   readonly firstName: string;
@@ -20,8 +21,12 @@ export default function Header({
 }) {
   return (
     <div className="header">
+      <Noise>
       <Name firstName={firstName} lastName={lastName} />
+      </Noise>
+      <Noise>
       <Contact email={email} phoneNumber={phoneNumber} />
+      </Noise>
     </div>
   );
 }
