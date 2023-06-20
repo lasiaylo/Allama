@@ -108,6 +108,8 @@ export default function NoiseTransition({
     }
   };
 
+  // console.log(id, isActive);
+
   useEffect(() => {
     ref.start();
     if (active) {
@@ -115,13 +117,13 @@ export default function NoiseTransition({
     }
     
     if (showHover.current) {
-      console.log(showHover);
       hoverRef.start();
     }
   }, [id, active]);
 
 
   if (isActive && isActive !== active) {
+    // console.log('what', id, isActive);
     setActive(isActive);
   }
 

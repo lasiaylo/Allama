@@ -8,12 +8,10 @@ import Header, { IContact } from '../components/header';
 import { Separator } from '@radix-ui/react-separator';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
-import { useSpringRef } from 'react-spring';
 import Footer from '../components/footer';
 import Noise from '../components/noise';
-import WorksView from '../components/worksView';
 import RoleSelector from '../components/roleSelector';
-import Sidebar from '../components/sidebar';
+import WorksBody from '../components/worksBody';
 
 export const query = graphql`
   query Index {
@@ -35,7 +33,7 @@ export const query = graphql`
       }
     }
 
-    workResults: allContentfulWork {
+    workResults: allContentfulWork(sort: { datePublished: DESC }) {
       nodes {
         id
         roles
@@ -71,34 +69,22 @@ export default function IndexPage({
   const [activeRole, setActiveRole] = useState(
     rolesToWorks.hasOwnProperty(pageRole) ? pageRole : roles[0]
   );
-  const [activeWork, setActiveWork] = useState(rolesToWorks[activeRole][0]);
-  const springRef = useSpringRef();
 
   useEffect(() => {
     if (rolesToWorks.hasOwnProperty(pageRole)) {
       setActiveRole(pageRole);
-      setActiveWork(rolesToWorks[pageRole][0]);
     }
   }, [hash]);
 
-  useEffect(() => {
-    springRef.start();
-  }, [activeRole, activeWork]);
+  const pageWorks = rolesToWorks[activeRole];
+
 
   return (
     <div className="site-container">
       <Header info={info} />
       <Separator className="separator" />
       <RoleSelector roles={roles} active={activeRole} />
-      <div className="works-body">
-        <Sidebar
-          works={rolesToWorks[activeRole]}
-          activeWork={activeWork}
-          callback={setActiveWork}
-          springRef={springRef}
-        />
-        <WorksView {...activeWork} />
-      </div>
+      <WorksBody works={pageWorks} key={JSON.stringify(pageWorks)} />
       <div className="footer">
         <Footer url={info.portraitVideo.file.url} />
         <Noise className={'chatbox'}>

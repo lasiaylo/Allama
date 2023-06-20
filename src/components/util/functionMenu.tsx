@@ -3,8 +3,8 @@ import * as React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import '../../styles/components/s_functionMenu.scss';
-import { SpringRef } from 'react-spring';
 import NoiseTransition from '../noiseTransition';
+import Noise from '../noise';
 
 export interface IButton {
   label: string;
@@ -14,7 +14,6 @@ export interface IButton {
 
 type PropTypes = NavigationMenuProps & {
   buttons: IButton[];
-  springRef?: SpringRef;
 };
 
 export default function FunctionMenu({
@@ -34,9 +33,9 @@ export default function FunctionMenu({
         </NavigationMenu.Link>
       </NavigationMenu.Item>
     ) : (
-      <NoiseTransition id={label}>
+      <Noise>
         <h3 className="menu-header">{label}</h3>
-      </NoiseTransition>
+      </Noise>
     );
   });
   return (
