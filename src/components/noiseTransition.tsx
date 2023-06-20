@@ -21,7 +21,7 @@ const hoverConfig = {
 };
 
 const hoverEmptyConfig = {
-  duration: 1000,
+  duration: 1250,
   progress: 0,
 };
 
