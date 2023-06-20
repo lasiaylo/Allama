@@ -83,7 +83,7 @@ export default function IndexPage({
       <Header info={info} />
       <Separator className="separator" />
       <RoleSelector roles={roles} active={activeRole} />
-      <WorksBody works={pageWorks} key={JSON.stringify(pageWorks)} />
+      <WorksBody works={pageWorks} />
       <div className="footer">
         <Footer url={info.portraitVideo.file.url} />
         <Noise className={'chatbox'}>
