@@ -1,6 +1,5 @@
 import FunctionMenu, { IButton } from './util/functionMenu';
 import * as React from 'react';
-import { SpringRef } from 'react-spring';
 import { IWork } from '../util/page/IndexUtils';
 import '../styles/components/s_sidebar.scss';
 
@@ -8,14 +7,12 @@ type PropTypes = {
   works: IWork[];
   callback: Function;
   activeWork: IWork;
-  springRef: SpringRef;
 };
 
 export default function Sidebar({
   works,
   callback,
   activeWork,
-  springRef,
 }: PropTypes) {
   const yearToWork: Record<string, IWork[]> = {};
   // TODO: Convert to reduce
@@ -51,7 +48,6 @@ export default function Sidebar({
       <FunctionMenu
         orientation={'vertical'}
         buttons={buttons}
-        springRef={springRef}
       />
     </div>
   );
