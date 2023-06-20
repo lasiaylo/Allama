@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ReactNode, useCallback, useEffect, useState } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import '../styles/components/noise.scss';
 import { animated, SpringRef, to, useSpring, useSpringRef } from 'react-spring';
 import { easings } from '@react-spring/web';
@@ -80,11 +80,11 @@ export default function NoiseTransition({
   const [currID, setCurrID] = useState<string>('');
   const ref = useSpringRef();
 
-  const setHover = useCallback((a: boolean) => {
+  const setHover = (a: boolean) => {
     if (isHoverable) {
       setActive(a)
     }
-  }, []);
+  };
 
   useEffect(() => {
     ref.start();
