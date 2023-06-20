@@ -1,47 +1,76 @@
 import * as React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
 import '../styles/components/s_noise.scss';
-import { animated, SpringRef, to, useSpring, useSpringRef } from 'react-spring';
+import {
+  animated,
+  SpringConfig,
+  SpringRef,
+  to,
+  useSpring,
+  useSpringRef,
+} from 'react-spring';
 import classNames from 'classnames';
 import { isEmpty } from '../util/StringUtils';
+import _ from 'lodash';
 
-export const empty = { brightness: 9000, contrast: 0, opacity: 50.5 };
-export const full = { brightness: 100000, contrast: 180, opacity: 100 };
+const empty = { brightness: 9000, contrast: 0, opacity: 50.5 };
+const full = { brightness: 100000, contrast: 180, opacity: 100 };
 
-export const emptyConfig = {
+const hoverConfig = {
+  duration: 1000,
+  progress: 0.6,
+};
+
+const hoverEmptyConfig = {
+  duration: 1000,
+  progress: 0,
+};
+
+
+const textHoverConfig = {
+  duration: 3000,
+  progress: 0.5,
+};
+
+const emptyConfig = {
   duration: 2000,
   progress: 0.3,
 };
 
-export const fullConfig = {
+const fullConfig = {
   duration: 6000,
   progress: 0.6,
 };
 
-export const hoverConfig ={
-
-}
 
 function NoiseItem({
-  children,
-  showing,
   springRef,
+  showing,
   active,
+  config,
   invert,
   className,
+  children,
 }: React.PropsWithChildren<{
-  showing: boolean;
   springRef: SpringRef;
+  showing: boolean;
   active?: boolean;
+  config?: SpringConfig;
   invert?: boolean;
   className?: string;
 }>) {
+  const springConfig = config ?? (showing ? fullConfig : emptyConfig);
   const { contrast, brightness, opacity } = useSpring({
     ref: springRef,
     from: empty,
     to: full,
     reverse: !showing,
-    config: showing ? fullConfig : emptyConfig,
+    config: springConfig,
+    onStart: () => {
+      if (_.isEqual(config, hoverEmptyConfig)) {
+        console.log(showing)
+      }
+    },
     reset: true,
   });
 
@@ -57,7 +86,6 @@ function NoiseItem({
             }`
         ),
       }}
-      data-active={active}
     >
       {children}
     </animated.div>
@@ -81,11 +109,10 @@ export default function NoiseTransition({
   const [curr, setCurr] = useState<ReactNode>(null);
   const [currID, setCurrID] = useState<string>('');
   const ref = useSpringRef();
-  const hoverRef = useSpringRef();
 
   const setHover = (a: boolean) => {
     if (isHoverable) {
-      setActive(a)
+      setActive(a);
     }
   };
 
@@ -113,27 +140,29 @@ export default function NoiseTransition({
     >
       {(prev || !active) && (
         <NoiseItem
+          springRef={ref}
           className={classNames('noise-prev', className)}
           showing={false}
-          springRef={ref}
         >
           {prev}
         </NoiseItem>
       )}
       <NoiseItem
-        className={classNames('noise-curr', className)}
-        showing={true}
         springRef={ref}
+        className={classNames('noise-curr', className)}
+        config={active ? textHoverConfig : undefined}
         active={active}
+        showing={true}
         invert={active}
       >
         {curr}
       </NoiseItem>
       <NoiseItem
-        className={'beep-boop'}
-        showing={active}
         springRef={ref}
+        className={'noise-indicator'}
+        config={active ? hoverConfig : hoverEmptyConfig}
         active={active}
+        showing={active}
       />
     </div>
   );

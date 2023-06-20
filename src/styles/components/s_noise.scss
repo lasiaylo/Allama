@@ -2,6 +2,15 @@
 
 $empty: contrast(0%) brightness(9000%) opacity(50.5%);
 $filled: contrast(180%) brightness(100000%) opacity(100%);
+$text-gradient: radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
+no-repeat,
+url('../../../static/images/noise.svg');
+$background-gradient: radial-gradient(
+    circle at 0% -100%,
+      (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 200%)
+)
+no-repeat,
+url('../../../static/images/noise.svg');
 
 ::selection {
   background-color: #1a1515;
@@ -22,10 +31,7 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
 }
 
 .noise {
-  background:
-    radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
-      no-repeat,
-    url('../../../static/images/noise.svg');
+  background: $text-gradient;
   filter: $filled;
   background-clip: text;
   animation: ink-fill 8s;
@@ -41,14 +47,7 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
 
 .noise-item {
   grid-area: 1/1;
-  background:
-    //linear-gradient(rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
-    radial-gradient(
-        circle at -50%,
-        (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
-      )
-      no-repeat,
-    url('../../../static/images/noise.svg');
+  background: $text-gradient;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
@@ -64,21 +63,11 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
   }
 }
 
-.beep-boop {
+.noise-indicator {
   z-index: -1;
   grid-area: 1/1;
-
-  &[data-active="true"] {
-    background:
-      //linear-gradient(35deg, rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
-      radial-gradient(
-          circle at 0% -100%,
-            (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 200%)
-      )
-      no-repeat,
-      url('../../../static/images/noise.svg');
-    background-clip: content-box;
-  }
+  background: $background-gradient;
+  background-clip: content-box;
 }
 
 //noinspection Stylelint

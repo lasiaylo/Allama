@@ -13,8 +13,6 @@ export default function Footer({ url }: { url: string }) {
       timer = setTimeout(() => setPlay(false), 200);
     });
   });
-
-  console.log(url);
   return (
     <ReactPlayer
       // @ts-ignore
