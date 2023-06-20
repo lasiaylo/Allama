@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
 import '../styles/components/s_noise.scss';
 import { animated, SpringRef, to, useSpring, useSpringRef } from 'react-spring';
-import { easings } from '@react-spring/web';
 import classNames from 'classnames';
 import { isEmpty } from '../util/StringUtils';
 
@@ -11,14 +10,17 @@ export const full = { brightness: 100000, contrast: 180, opacity: 100 };
 
 export const emptyConfig = {
   duration: 2000,
-  progress: 0.55,
-  easing: easings.easeInCubic,
+  progress: 0.3,
 };
 
 export const fullConfig = {
-  duration: 7000,
+  duration: 6000,
   progress: 0.6,
 };
+
+export const hoverConfig ={
+
+}
 
 function NoiseItem({
   children,
@@ -74,11 +76,12 @@ export default function NoiseTransition({
   isHoverable?: boolean;
   className?: string;
 }>) {
-  const [active, setActive] = useState(isActive);
+  const [active, setActive] = useState<boolean>(isActive ?? false);
   const [prev, setPrev] = useState<ReactNode>(null);
   const [curr, setCurr] = useState<ReactNode>(null);
   const [currID, setCurrID] = useState<string>('');
   const ref = useSpringRef();
+  const hoverRef = useSpringRef();
 
   const setHover = (a: boolean) => {
     if (isHoverable) {
@@ -90,7 +93,7 @@ export default function NoiseTransition({
     ref.start();
   }, [id, active]);
 
-  if (isActive !== active) {
+  if (isActive && isActive !== active) {
     setActive(isActive);
   }
 
@@ -128,7 +131,7 @@ export default function NoiseTransition({
       </NoiseItem>
       <NoiseItem
         className={'beep-boop'}
-        showing={true}
+        showing={active}
         springRef={ref}
         active={active}
       />
