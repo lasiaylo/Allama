@@ -10,11 +10,20 @@
   @include button;
 
   &:hover {
-    background-color: $selected-color;
+    -webkit-text-fill-color: red;
   }
 
   &[data-active] {
-    //color: $background-color;
-    background-color: $selected-color;
+    -webkit-text-fill-color: red;
+  }
+}
+
+@keyframes bg-change {
+  from {
+    background-color: $background-color;
+  }
+
+  to {
+    background-color: $primary-color;
   }
 }

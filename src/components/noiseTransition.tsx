@@ -1,50 +1,61 @@
 import * as React from 'react';
-import { ReactNode, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useState } from 'react';
 import '../styles/components/noise.scss';
-import { animated, to, useSpring } from 'react-spring';
+import { animated, SpringRef, to, useSpring, useSpringRef } from 'react-spring';
 import { easings } from '@react-spring/web';
+import classNames from 'classnames';
 import { isEmpty } from '../util/StringUtils';
 
+export const empty = { brightness: 9000, contrast: 0, opacity: 50.5 };
+export const full = { brightness: 100000, contrast: 180, opacity: 100 };
+
+export const emptyConfig = {
+  duration: 2000,
+  progress: 0.55,
+  easing: easings.easeInCubic,
+};
+
+export const fullConfig = {
+  duration: 7000,
+  progress: 0.6,
+};
+
 function NoiseItem({
-  className,
   children,
   showing,
-  id,
+  springRef,
+  active,
+  invert,
+  className,
 }: React.PropsWithChildren<{
-  className?: string;
   showing: boolean;
-  id: string;
+  springRef: SpringRef;
+  active?: boolean;
+  invert?: boolean;
+  className?: string;
 }>) {
-  const fillConfig = {
-    duration: 7000,
-    progress: 0.6,
-  };
-  const emptyConfig = {
-    duration: 2000,
-    progress: 0.55,
-    easing: easings.easeInCubic,
-  };
-
-  const [{ contrast, brightness, opacity }] = useSpring(
-    () => ({
-      from: { brightness: 9000, contrast: 0, opacity: 50.5 },
-      to: { brightness: 100000, contrast: 180, opacity: 100 },
-      reverse: !showing,
-      config: showing ? fillConfig : emptyConfig,
-      reset: true,
-    }),
-    [id]
-  );
+  const { contrast, brightness, opacity } = useSpring({
+    ref: springRef,
+    from: empty,
+    to: full,
+    reverse: !showing,
+    config: showing ? fullConfig : emptyConfig,
+    reset: true,
+  });
 
   return (
     <animated.div
-      className={`noise-item ${className}`}
+      className={classNames('noise-item', className)}
       style={{
         filter: to(
           [contrast, brightness, opacity],
-          (c, b, o) => `contrast(${c}%) brightness(${b}%) opacity(${o}%)`
+          (c, b, o) =>
+            `contrast(${c}%) brightness(${b}%) opacity(${o}%) invert(${
+              invert ? 1 : 0
+            }`
         ),
       }}
+      data-active={active}
     >
       {children}
     </animated.div>
@@ -52,41 +63,71 @@ function NoiseItem({
 }
 
 export default function NoiseTransition({
-  children,
-  className,
   id,
-}: React.PropsWithChildren<{ className?: string; id: string }>) {
+  isActive,
+  isHoverable,
+  className,
+  children,
+}: React.PropsWithChildren<{
+  id: string;
+  isActive?: boolean;
+  isHoverable?: boolean;
+  className?: string;
+}>) {
+  const [active, setActive] = useState(isActive);
   const [prev, setPrev] = useState<ReactNode>(null);
   const [curr, setCurr] = useState<ReactNode>(null);
-  const [prevID, setPrevID] = useState<string>('');
   const [currID, setCurrID] = useState<string>('');
+  const ref = useSpringRef();
+
+  const setHover = useCallback((a: boolean) => {
+    if (isHoverable) {
+      setActive(a)
+    }
+  }, []);
+
+  useEffect(() => {
+    ref.start();
+  }, [id, active]);
 
   if (currID !== id) {
     if (!isEmpty(currID)) {
       setPrev(curr);
-      setPrevID(currID);
     }
     setCurrID(id);
     setCurr(children);
   }
+
   return (
-    <div className='noise-transition'>
-      {prev && (
+    <div
+      className="noise-transition"
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      {(prev || !active) && (
         <NoiseItem
-          className={className}
+          className={classNames('noise-prev', className)}
           showing={false}
-          id={prevID}
+          springRef={ref}
         >
           {prev}
         </NoiseItem>
       )}
       <NoiseItem
-        className={className}
+        className={classNames('noise-curr', className)}
         showing={true}
-        id={currID}
+        springRef={ref}
+        active={active}
+        invert={active}
       >
         {curr}
       </NoiseItem>
+      <NoiseItem
+        className={'beep-boop'}
+        showing={true}
+        springRef={ref}
+        active={active}
+      />
     </div>
   );
 }

@@ -6,7 +6,6 @@ import { graphql } from 'gatsby';
 import '../styles/pages/index.scss';
 import Header, { IContact } from '../components/header';
 import { Separator } from '@radix-ui/react-separator';
-import WorksView from '../components/worksView';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
 import RoleSelector from '../components/roleSelector';
@@ -14,6 +13,7 @@ import { useSpringRef } from 'react-spring';
 import Footer from '../components/footer';
 import Noise from '../components/noise';
 import Sidebar from '../components/sidebar';
+import WorksView from '../components/worksView';
 
 export const query = graphql`
   query Index {

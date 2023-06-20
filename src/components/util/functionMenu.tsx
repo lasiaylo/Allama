@@ -3,7 +3,7 @@ import * as React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import '../../styles/components/functionMenu.scss';
-import { animated, SpringRef, useTrail, useTransition } from 'react-spring';
+import { SpringRef } from 'react-spring';
 import NoiseTransition from '../noiseTransition';
 
 export interface IButton {
@@ -20,66 +20,25 @@ type PropTypes = NavigationMenuProps & {
 export default function FunctionMenu({
   buttons,
   orientation,
-  springRef,
 }: PropTypes) {
-  const delay = 50;
-  const trails = useTrail(buttons.length, {
-    from: { opacity: 0 },
-    to: { opacity: 1 },
-    delay: delay / 2,
-  });
-
-  const transition = useTransition(buttons, {
-    ref: springRef,
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    // leave: { opacity: 0 },
-    // exitBeforeEnter: true,
-    trail: delay,
-  });
-
   // TODO: Refactor into separate component
-  const items = springRef
-    ? transition((style, button) => {
-        const { active, callback, label } = button;
-        return callback ? (
-          <NavigationMenu.Item className="menu-item" key={crypto.randomUUID()}>
-            <NavigationMenu.Link
-              active={active}
-              className="menu-link"
-              onSelect={callback ? () => callback() : undefined}
-            >
-              <NoiseTransition id={label}>
-              <animated.div style={style}>{label}</animated.div>
-              </NoiseTransition>
-            </NavigationMenu.Link>
-          </NavigationMenu.Item>
-        ) : (
-          <NoiseTransition id={label}>
-          <animated.h3 style={style} className="menu-header">
-            {label}
-          </animated.h3>
-          </NoiseTransition>
-        );
-      })
-    : trails.map((style, i) => {
-        const { active, callback, label } = buttons[i];
-        return callback ? (
-          <NavigationMenu.Item className="menu-item" key={crypto.randomUUID()}>
-            <NavigationMenu.Link
-              active={active}
-              className="menu-link"
-              onSelect={callback ? () => callback() : undefined}
-            >
-              <animated.div style={style}>{label}</animated.div>
-            </NavigationMenu.Link>
-          </NavigationMenu.Item>
-        ) : (
-          <animated.h3 style={style} className="menu-header">
-            {label}
-          </animated.h3>
-        );
-      });
+  const items = buttons.map(({ active, callback, label }) => {
+    return callback ? (
+      <NavigationMenu.Item className="menu-item">
+        <NavigationMenu.Link
+          active={active}
+          className="menu-link"
+          onSelect={callback ? () => callback() : undefined}
+        >
+          <NoiseTransition id={label} isActive={active} isHoverable={true}>{label}</NoiseTransition>
+        </NavigationMenu.Link>
+      </NavigationMenu.Item>
+    ) : (
+      <NoiseTransition id={label}>
+        <h3 className="menu-header">{label}</h3>
+      </NoiseTransition>
+    );
+  });
   return (
     <NavigationMenu.Root className="menu" orientation={orientation}>
       <NavigationMenu.List className="menu-list">{items}</NavigationMenu.List>

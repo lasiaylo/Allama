@@ -23,7 +23,6 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
 
 .noise {
   background:
-    //linear-gradient(rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
     radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
       no-repeat,
     url('../../../static/images/noise.svg');
@@ -34,9 +33,9 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
   -webkit-text-fill-color: transparent;
 }
 
-
 .noise-transition {
   display: grid;
+  filter: grayscale(75%);
   isolation: isolate;
 }
 
@@ -44,13 +43,43 @@ $filled: contrast(180%) brightness(100000%) opacity(100%);
   grid-area: 1/1;
   background:
     //linear-gradient(rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
-    radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
-    no-repeat,
+    radial-gradient(
+        circle at -50%,
+        (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
+      )
+      no-repeat,
     url('../../../static/images/noise.svg');
-    -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
+.noise-curr {
+  &[data-active="true"] {
+    background:
+      linear-gradient(20deg, black -100%, transparent 400%)
+      no-repeat,
+      url('../../../static/images/noiseTexture.png');
+    background-clip: text;
+    mix-blend-mode: difference;
+  }
+}
+
+.beep-boop {
+  z-index: -1;
+  grid-area: 1/1;
+
+  &[data-active="true"] {
+    background:
+      //linear-gradient(35deg, rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%)
+      radial-gradient(
+          circle at 0% -100%,
+            (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 200%)
+      )
+      no-repeat,
+      url('../../../static/images/noise.svg');
+    background-clip: content-box;
+  }
+}
 
 //noinspection Stylelint
 @media all and (min-device-pixel-ratio: 0) and (resolution >= 0.001dpcm) {
