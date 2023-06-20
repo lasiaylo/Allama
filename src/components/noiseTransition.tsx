@@ -138,7 +138,7 @@ export default function NoiseTransition({
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {(prev || !active) && (
+      {(prev && !active) && (
         <NoiseItem
           springRef={ref}
           className={classNames('noise-prev', className)}
