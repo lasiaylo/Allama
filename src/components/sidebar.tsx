@@ -2,7 +2,7 @@ import FunctionMenu, { IButton } from './util/functionMenu';
 import * as React from 'react';
 import { SpringRef } from 'react-spring';
 import { IWork } from '../util/page/IndexUtils';
-import '../styles/components/sidebar.scss';
+import '../styles/components/s_sidebar.scss';
 
 type PropTypes = {
   works: IWork[];

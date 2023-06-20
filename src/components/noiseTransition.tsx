@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ReactNode, useEffect, useState } from 'react';
-import '../styles/components/noise.scss';
+import '../styles/components/s_noise.scss';
 import { animated, SpringRef, to, useSpring, useSpringRef } from 'react-spring';
 import { easings } from '@react-spring/web';
 import classNames from 'classnames';
@@ -89,6 +89,10 @@ export default function NoiseTransition({
   useEffect(() => {
     ref.start();
   }, [id, active]);
+
+  if (isActive !== active) {
+    setActive(isActive);
+  }
 
   if (currID !== id) {
     if (!isEmpty(currID)) {

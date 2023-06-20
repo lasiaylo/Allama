@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../styles/components/contact.scss';
+import '../styles/components/s_contact.scss';
 
 type Props = {
   email: string | null;

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../styles/components/name.scss';
+import '../styles/components/s_name.scss';
 import classNames from 'classnames';
 
 type Props = {

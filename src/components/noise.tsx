@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../styles/components/noise.scss';
+import '../styles/components/s_noise.scss';
 
 export default function Noise({
   children,

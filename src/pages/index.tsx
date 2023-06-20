@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import type { PageProps } from 'gatsby';
 import { graphql } from 'gatsby';
 
-import '../styles/pages/index.scss';
+import '../styles/pages/s_index.scss';
 import Header, { IContact } from '../components/header';
 import { Separator } from '@radix-ui/react-separator';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
@@ -42,6 +42,11 @@ export const query = graphql`
         name
         datePublished
         description
+        previewVideo {
+          file {
+            url
+          }
+        }
         preview {
           image: gatsbyImageData(layout: CONSTRAINED)
         }
@@ -63,7 +68,9 @@ export default function IndexPage({
   const roles = Object.keys(rolesToWorks);
 
   const pageRole = startCase(hash.replace('#', ''));
-  const [activeRole, setActiveRole] = useState(rolesToWorks.hasOwnProperty(pageRole) ? pageRole : roles[0]);
+  const [activeRole, setActiveRole] = useState(
+    rolesToWorks.hasOwnProperty(pageRole) ? pageRole : roles[0]
+  );
   const [activeWork, setActiveWork] = useState(rolesToWorks[activeRole][0]);
   const springRef = useSpringRef();
 
@@ -95,10 +102,10 @@ export default function IndexPage({
       <div className="footer">
         <Footer url={info.portraitVideo.file.url} />
         <Noise className={'chatbox'}>
-        <p>
-          How can I help?
-          <br /> Let me know.{' '}
-        </p>
+          <p>
+            How can I help?
+            <br /> Let me know.{' '}
+          </p>
         </Noise>
       </div>
     </div>
