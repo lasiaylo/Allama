@@ -10,8 +10,8 @@ import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
 import Footer from '../components/footer';
 import Noise from '../components/noise';
-import RoleSelector from '../components/roleSelector';
 import WorksBody from '../components/worksBody';
+import RoleSelector from '../components/roleSelector';
 
 export const query = graphql`
   query Index {

@@ -84,8 +84,8 @@ function NoiseItem({
 
 export default function NoiseTransition({
   id,
-  isActive,
-  isHoverable,
+  isActive = false,
+  isHoverable = false,
   className,
   children,
 }: React.PropsWithChildren<{
@@ -94,38 +94,36 @@ export default function NoiseTransition({
   isHoverable?: boolean;
   className?: string;
 }>) {
-  const showHover= useRef<boolean>(isActive ?? false);
+  const showHover = useRef<boolean>(isActive);
   const [active, setActive] = useState<boolean>(isActive ?? false);
   const [prev, setPrev] = useState<ReactNode>(null);
   const [curr, setCurr] = useState<ReactNode>(children);
   const [currID, setCurrID] = useState<string>(id);
   const ref = useSpringRef();
   const hoverRef = useSpringRef();
-
   const setHover = (a: boolean) => {
     if (isHoverable) {
-      setActive(a);
+      setActive(a || isActive);
     }
   };
 
-  // console.log(id, isActive);
-
   useEffect(() => {
     ref.start();
+
+    // Play the hover transition only after the first render
     if (active) {
       showHover.current = true;
     }
-    
     if (showHover.current) {
       hoverRef.start();
     }
   }, [id, active]);
 
-
-  if (isActive && isActive !== active) {
-    // console.log('what', id, isActive);
-    setActive(isActive);
-  }
+  useEffect(() => {
+    if (isActive != undefined && isActive !== active) {
+      setActive(isActive);
+    }
+  }, [isActive]);
 
   if (currID !== id) {
     if (!isEmpty(currID)) {
@@ -163,7 +161,7 @@ export default function NoiseTransition({
         springRef={hoverRef}
         className={'noise-indicator'}
         config={active ? hoverConfig : hoverEmptyConfig}
-        showing={showHover.current ? active: true}
+        showing={showHover.current ? active : true}
       />
     </div>
   );
