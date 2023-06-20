@@ -8,12 +8,12 @@ import Header, { IContact } from '../components/header';
 import { Separator } from '@radix-ui/react-separator';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
-import RoleSelector from '../components/roleSelector';
 import { useSpringRef } from 'react-spring';
 import Footer from '../components/footer';
 import Noise from '../components/noise';
-import Sidebar from '../components/sidebar';
 import WorksView from '../components/worksView';
+import RoleSelector from '../components/roleSelector';
+import Sidebar from '../components/sidebar';
 
 export const query = graphql`
   query Index {
