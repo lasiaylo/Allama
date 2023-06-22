@@ -80,6 +80,7 @@ export default function IndexPage({
 
   return (
     <div className="site-container">
+      <title>{`${info.firstName} portfolio`}</title>
       <Header info={info} />
       <Separator className="separator" />
       <RoleSelector roles={roles} active={activeRole} />
