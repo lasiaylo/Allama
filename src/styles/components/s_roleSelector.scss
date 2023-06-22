@@ -1,0 +1,29 @@
+@import '../variables';
+
+.role-selector {
+  display: flex;
+  margin-bottom: $gap-large;
+
+  .menu {
+    max-width: 60%;
+  }
+
+  &:nth-child(n) {
+    gap: $gap-med;
+  }
+
+  .menu-list {
+    @include button;
+
+    display: flex;
+  }
+
+  .menu-item {
+    //width: 10vw !important;
+    //max-width: 10vw !important;
+
+    &:not(:last-child) {
+      margin-right: $gap-large;
+    }
+  }
+}

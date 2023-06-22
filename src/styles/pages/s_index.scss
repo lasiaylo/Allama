@@ -1,5 +1,6 @@
 @import "../variables";
 
+/* stylelint-disable-next-line */
 html, body, #___gatsby, #gatsby-focus-wrapper {
   height: 100%;
   margin: 0;
@@ -33,47 +34,6 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   margin-bottom: $gap-med;
   background-color: $primary-color;
   animation: fade 6s
-}
-
-.role-selector {
-  display: flex;
-  margin-bottom: $gap-large;
-
-  &:nth-child(n) {
-    gap: $gap-med;
-  }
-
-  .menu-list {
-    @include button;
-
-    display: flex;
-  }
-
-  .menu-item {
-    width: 10vw !important;
-    max-width: 10vw !important;
-
-    &:not(:last-child) {
-      margin-right: $gap-med;
-    }
-  }
-}
-
-.works-body {
-  display: grid;
-  grid-template:
-    'sidebar view';
-  grid-template-columns: minmax(1fr, 1fr)  minmax(1fr, 1fr);
-  grid-column-gap: $gap-large;
-  margin-bottom: $gap-x-large;
-
-  .side-bar {
-    grid-area: view;
-  }
-
-  .works-view {
-    grid-area: sidebar;
-  }
 }
 
 .footer {

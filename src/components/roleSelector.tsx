@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FunctionMenu from './util/functionMenu';
 import { navigate } from 'gatsby';
+import '../styles/components/s_roleSelector.scss';
 
 const RoleSelector = function RoleSelector({
   roles,

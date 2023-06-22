@@ -1,24 +1,22 @@
 /* Palette */
 //$background-color: #fafbff;
-$background-color: #FFFF;
+$background-color: #FFFEFA;
 $primary-color: #1c1c1b;
 $secondary-color: #868686;
 $fade-in-color: #8c8a85;
 $selected-color: #403F3D;
-$highlight-color: #00ff41;
-
-
-/* Site Margins */
-$site-width: 800px;
-$page-margin-top: 20px;
-$page-margin-bottom: 35px;
-$portrait-size: 140px;
 
 /* Gaps */
 $gap-x-large: 75px;
-$gap-large: 40px;
+$gap-large: 35px;
 $gap-med: 15px;
 $gap-small: 5px;
+
+/* Site Margins */
+$site-width: 800px;
+$page-margin-top: 30px;
+$page-margin-bottom: $gap-large;
+$portrait-size: 140px;
 
 /* Fonts */
 @font-face {
@@ -34,36 +32,9 @@ $gap-small: 5px;
   font-display: swap;
 }
 
-/* Animations */
-@mixin blur-in($anim-name, $font-size, $line-height) {
-  $new-size: ($font-size * 1.091);
-  $line-height: $line-height * 0.9;
-  //$new-size: ($font-size * 2.09);
-
-  @keyframes #{$anim-name} {
-    0% {
-      font-family: 'Redaction 100', serif;
-      font-size: $new-size;
-      line-height: $line-height;
-      color: $fade-in-color;
-    }
-
-    50% {
-      max-width: 33ch;
-      font-family: 'Redaction 35', serif;
-      font-size: $new-size;
-      line-height: $line-height;
-      color: $primary-color;
-      letter-spacing: 0.21px;
-    }
-  }
-}
-
 /* Font Hierarchy */
 
 @mixin button {
-  @include blur-in('button-frames', 1rem, 1.2);
-
   font: 1rem/1.2 'Frame Text Trial', serif;
   color: $secondary-color;
   list-style: none;
@@ -87,14 +58,11 @@ html {
 }
 
 h1 {
-  //font: 1.3rem "Redaction 10", serif;
-  font: 1.3rem/1.2 'Frame Head Trial', serif;
+  font: 1.3rem/1.15 'Frame Head Trial', serif;
   font-weight: bold;
 }
 
 h2 {
-  @include blur-in('h2-frames', 1.5rem, 1.2);
-
   margin: $gap-med 0;
   font: 1.5rem/1.2 'Frame Head Trial', serif;
   color: $primary-color;
@@ -105,8 +73,6 @@ h3 {
 }
 
 p {
-  @include blur-in('p-frames', 1rem, 1.45);
-
   max-width: 30ch;
   font-family: 'Frame Text Trial', serif;
   font-size: 1rem;

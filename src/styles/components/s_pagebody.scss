@@ -1,0 +1,18 @@
+@import "../variables";
+
+.page-body {
+  display: grid;
+  grid-template:
+    'sidebar view';
+  grid-template-columns: minmax(1fr, 1fr)  minmax(1fr, 1fr);
+  grid-column-gap: $gap-x-large;
+  margin-bottom: $gap-x-large;
+
+  .side-bar {
+    grid-area: view;
+  }
+
+  .works-view {
+    grid-area: sidebar;
+  }
+}

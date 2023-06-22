@@ -4,6 +4,7 @@ import { IWork } from '../util/page/IndexUtils';
 import NoiseTransition from './noiseTransition';
 import ReactPlayer from 'react-player';
 import '../styles/components/s_worksView.scss';
+import { animated, useTransition } from 'react-spring';
 
 export default function WorksView(work: React.PropsWithChildren<IWork>) {
   const { link, previewVideo, previewImage, name, description, id } = work;
@@ -13,23 +14,57 @@ export default function WorksView(work: React.PropsWithChildren<IWork>) {
   ) : (
     <></>
   );
+
+  const transition = useTransition(previewVideo.file.url, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    config: {
+      mass: 2,
+      tension: 100,
+      friction: 60,
+      clamp: true,
+    },
+  });
+
+  const cardView = transition((style, item) => (
+    <animated.a className="card-view" href={link} target="_blank" style={style}>
+      {previewVideo ? (
+        <ReactPlayer
+          className="previewVideo"
+          url={item}
+          playing={true}
+          volume={0}
+          loop={true}
+          fallback={fallback}
+        />
+      ) : (
+        fallback
+      )}
+    </animated.a>
+  ));
+
   return (
     <div className={'works-view'}>
-      <a className="card-view" href={link} target="_blank">
-        {previewVideo ? (
-          <ReactPlayer
-            className="previewVideo"
-            url={previewVideo.file.url}
-            playing={true}
-            volume={0}
-            loop={true}
-            // height={200}
-            fallback={fallback}
-          />
-        ) : (
-          fallback
-        )}
-      </a>
+      <div className={'te'}>
+        {/*<div className={'beepboop'}></div>*/}
+        {cardView}
+        {/*<a className="card-view" href={link} target="_blank">*/}
+        {/*  {previewVideo ? (*/}
+        {/*    <ReactPlayer*/}
+        {/*      className="previewVideo"*/}
+        {/*      url={previewVideo.file.url}*/}
+        {/*      playing={true}*/}
+        {/*      volume={0}*/}
+        {/*      loop={true}*/}
+        {/*      // height={200}*/}
+        {/*      fallback={fallback}*/}
+        {/*    />*/}
+        {/*  ) : (*/}
+        {/*    fallback*/}
+        {/*  )}*/}
+        {/*</a>*/}
+      </div>
       <NoiseTransition id={id}>
         <h2>{name}</h2>
       </NoiseTransition>

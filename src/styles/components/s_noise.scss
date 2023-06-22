@@ -6,8 +6,8 @@ $text-gradient: radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 
 no-repeat,
 url('../../../static/images/noise.svg');
 $background-gradient: radial-gradient(
-    circle at 0% -100%,
-      (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 200%)
+    circle at 0% -80%,
+      (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 250%)
 )
 no-repeat,
 url('../../../static/images/noise.svg');
@@ -66,8 +66,10 @@ url('../../../static/images/noise.svg');
 .noise-indicator {
   z-index: -1;
   grid-area: 1/1;
+  width: 100%;
+  padding-right: $gap-large;
   background: $background-gradient;
-  background-clip: content-box;
+  background-clip: padding-box;
 }
 
 //noinspection Stylelint
