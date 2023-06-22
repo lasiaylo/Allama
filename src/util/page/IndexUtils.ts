@@ -8,7 +8,7 @@ export interface IWork {
   readonly roles: string[];
   readonly datePublished: string;
   readonly previewVideo: { file: { url: string } };
-  readonly preview: { image: IGatsbyImageData };
+  readonly previewImage: { image: IGatsbyImageData };
   readonly link: string;
 }
 
@@ -28,7 +28,7 @@ const mapWorks = _.memoize(
     return rolesToWorks;
   },
   // TODO: Use react hooks instead of memo
-  (i) => 0 // Only run once
+  (_i) => 0 // Only run once
 );
 
 export default mapWorks;

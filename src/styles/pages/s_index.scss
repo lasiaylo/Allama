@@ -25,7 +25,6 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
 
 .header {
   display: flex;
-  grid-area: header;
   justify-content: space-between;
 }
 
@@ -64,16 +63,16 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   display: grid;
   grid-template:
     'sidebar view';
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: minmax(1fr, 1fr)  minmax(1fr, 1fr);
   grid-column-gap: $gap-large;
   margin-bottom: $gap-x-large;
 
   .side-bar {
-    grid-area: sidebar;
+    grid-area: view;
   }
 
   .works-view {
-    grid-area: view;
+    grid-area: sidebar;
   }
 }
 

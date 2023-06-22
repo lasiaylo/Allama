@@ -2,6 +2,8 @@
 
 .card-view {
   perspective: 900px;
+  cursor: pointer;
+
 }
 
 .works-view{
@@ -13,7 +15,6 @@
 .preview {
   cursor: pointer;
   animation: card-float-x 10s cubic-bezier(0.42, 0, 0.2, 1) alternate infinite;
-;
   //animation: card-float 4s ease-in-out alternate infinite,
 }
 

@@ -10,7 +10,7 @@ import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
 import Footer from '../components/footer';
 import Noise from '../components/noise';
-import WorksBody from '../components/worksBody';
+import PageBody from '../components/pageBody';
 import RoleSelector from '../components/roleSelector';
 
 export const query = graphql`
@@ -45,7 +45,7 @@ export const query = graphql`
             url
           }
         }
-        preview {
+        previewImage {
           image: gatsbyImageData(layout: CONSTRAINED)
         }
         link
@@ -83,7 +83,7 @@ export default function IndexPage({
       <Header info={info} />
       <Separator className="separator" />
       <RoleSelector roles={roles} active={activeRole} />
-      <WorksBody works={pageWorks} />
+      <PageBody works={pageWorks} />
       <div className="footer">
         <Footer url={info.portraitVideo.file.url} />
         <Noise className={'chatbox'}>

@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import { isEmpty } from '../util/StringUtils';
 
 const empty = { brightness: 9000, contrast: 0, opacity: 50.5 };
-const full = { brightness: 100000, contrast: 180, opacity: 100 };
+const full = { brightness: 100000, contrast: 180, opacity: 95 };
 
 const hoverConfig = {
   duration: 1000,

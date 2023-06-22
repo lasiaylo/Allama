@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Sidebar from './sidebar';
 import WorksView from './worksView';
 
-export default function WorksBody({ works }: { works: IWork[] }) {
+export default function PageBody({ works }: { works: IWork[] }) {
   const [prevWorks, setPrevWorks] = useState(works);
   const [activeWork, setActiveWork] = useState(works[0]);
 

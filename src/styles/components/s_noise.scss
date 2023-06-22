@@ -1,7 +1,7 @@
 @import '../variables';
 
 $empty: contrast(0%) brightness(9000%) opacity(50.5%);
-$filled: contrast(180%) brightness(100000%) opacity(100%);
+$filled: contrast(180%) brightness(100000%) opacity(95%);
 $text-gradient: radial-gradient(circle at -50%, (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 400%))
 no-repeat,
 url('../../../static/images/noise.svg');

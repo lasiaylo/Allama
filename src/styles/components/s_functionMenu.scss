@@ -4,26 +4,5 @@
 
 .menu-list {
   list-style: none;
-}
-
-.menu-link {
-  @include button;
-
-  &:hover {
-    -webkit-text-fill-color: red;
-  }
-
-  &[data-active] {
-    -webkit-text-fill-color: red;
-  }
-}
-
-@keyframes bg-change {
-  from {
-    background-color: $background-color;
-  }
-
-  to {
-    background-color: $primary-color;
-  }
+  cursor: pointer;
 }

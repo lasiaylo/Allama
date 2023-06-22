@@ -22,10 +22,10 @@ export default function Header({
   return (
     <div className="header">
       <Noise>
-      <Name firstName={firstName} lastName={lastName} />
+        <Name firstName={firstName} lastName={lastName} />
       </Noise>
       <Noise>
-      <Contact email={email} phoneNumber={phoneNumber} />
+        <Contact email={email} phoneNumber={phoneNumber} />
       </Noise>
     </div>
   );
