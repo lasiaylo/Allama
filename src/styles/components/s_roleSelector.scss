@@ -23,7 +23,7 @@
     //max-width: 10vw !important;
 
     &:not(:last-child) {
-      margin-right: $gap-large;
+      margin-right: $gap-large + $gap-med;
     }
   }
 }
