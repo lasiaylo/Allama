@@ -18,8 +18,7 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   flex-direction: column;
   max-width: $site-width;
   min-height: 100%;
-  padding-top: $page-margin-top;
-  padding-bottom: $page-margin-bottom;
+  padding: $page-margin-top $gap-large $page-margin-bottom;
   margin-right: auto;
   margin-left: auto;
 }
