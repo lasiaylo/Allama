@@ -7,7 +7,7 @@ no-repeat,
 url('../../../static/images/noise.svg');
 $background-gradient: radial-gradient(
     circle at 0% -80%,
-      (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 250%)
+      (rgba(0 0 0 / 100%) -50%, rgb(0 0 0 / 0%) 500%)
 )
 no-repeat,
 url('../../../static/images/noise.svg');
@@ -34,8 +34,8 @@ url('../../../static/images/noise.svg');
   background: $text-gradient;
   filter: $filled;
   background-clip: text;
-  animation: ink-fill 8s;
-  animation-delay: -2.45s;
+  animation: ink-fill 12s;
+  animation-delay: -3.8s;
   -webkit-text-fill-color: transparent;
 }
 

@@ -5,6 +5,7 @@ $primary-color: #1c1c1b;
 $secondary-color: #868686;
 $fade-in-color: #8c8a85;
 $selected-color: #403F3D;
+$font: "GT Sectra Display Trial";
 
 /* Gaps */
 $gap-x-large: 75px;
@@ -27,15 +28,23 @@ $portrait-size: 140px;
 }
 
 @font-face {
-  font-family: 'Redaction 100';
-  src: url('/static/fonts/redaction/Redaction_100-Regular.woff2') format('otf');
+  font-family: 'Grenette Trial';
+  font-weight: 100 900;
+  src: url('/static/fonts/grenette/grenette-regular-trial.otf') format('otf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Weave;
+  font-weight: 100 900;
+  src: url('/static/fonts/weave-regular-trial.otf') format('otf');
   font-display: swap;
 }
 
 /* Font Hierarchy */
 
 @mixin button {
-  font: 1rem/1.2 'Frame Text Trial', serif;
+  font: 1rem/1.2 $font, serif;
   color: $secondary-color;
   list-style: none;
   user-select: none;
@@ -58,13 +67,13 @@ html {
 }
 
 h1 {
-  font: 1.3rem/1.15 'Frame Head Trial', serif;
+  font: 1.3rem/1.15 $font, serif;
   font-weight: bold;
 }
 
 h2 {
   margin: $gap-med 0;
-  font: 1.5rem/1.2 'Frame Head Trial', serif;
+  font: 1.5rem/1.2 $font, serif;
   color: $primary-color;
 }
 
@@ -74,7 +83,7 @@ h3 {
 
 p {
   max-width: 30ch;
-  font-family: 'Frame Text Trial', serif;
+  font-family: $font, serif;
   font-size: 1rem;
   line-height: 1.45;
   color: $primary-color;

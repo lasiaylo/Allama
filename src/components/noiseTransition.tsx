@@ -16,7 +16,7 @@ const empty = { brightness: 9000, contrast: 0, opacity: 50.5 };
 const full = { brightness: 100000, contrast: 180, opacity: 95 };
 
 const hoverConfig = {
-  duration: 1000,
+  duration: 4000,
   progress: 0.6,
 };
 
@@ -31,12 +31,12 @@ const textHoverConfig = {
 };
 
 const emptyConfig = {
-  duration: 2000,
+  duration: 4000,
   progress: 0.3,
 };
 
 const fullConfig = {
-  duration: 6000,
+  duration: 12000,
   progress: 0.6,
 };
 

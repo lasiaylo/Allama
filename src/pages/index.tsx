@@ -9,7 +9,6 @@ import { Separator } from '@radix-ui/react-separator';
 import mapWorks, { IWork } from '../util/page/IndexUtils';
 import { startCase } from 'lodash';
 import Footer from '../components/footer';
-import Noise from '../components/noise';
 import PageBody from '../components/pageBody';
 import RoleSelector from '../components/roleSelector';
 
@@ -87,12 +86,6 @@ export default function IndexPage({
       <PageBody works={pageWorks} />
       <div className="footer">
         <Footer url={info.portraitVideo.file.url} />
-        <Noise className={'chatbox'}>
-          <p>
-            How can I help?
-            <br /> Let me know.{' '}
-          </p>
-        </Noise>
       </div>
     </div>
   );
