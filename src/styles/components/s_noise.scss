@@ -67,7 +67,8 @@ url('../../../static/images/noise.svg');
   z-index: -1;
   grid-area: 1/1;
   width: 100%;
-  padding-right: $gap-large;
+  padding-top: $gap-small;
+  padding-bottom: $gap-small;
   background: $background-gradient;
   background-clip: padding-box;
 }

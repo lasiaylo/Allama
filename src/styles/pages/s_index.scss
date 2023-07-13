@@ -21,11 +21,16 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
   padding: $page-margin-top $gap-large $page-margin-bottom;
   margin-right: auto;
   margin-left: auto;
+
+  @include mobile {
+    padding: $page-margin-top $gap-med $page-margin-bottom;
+  }
 }
 
 .header {
   display: flex;
   justify-content: space-between;
+  padding-bottom: $gap-small;
 }
 
 .separator {
@@ -41,13 +46,6 @@ html, body, #___gatsby, #gatsby-focus-wrapper {
 
   .chatbox-video {
     animation: fade 4s
-  }
-
-  .chatbox {
-    position: relative;
-    top: 0.46em; // Align baseline with image
-    margin-top: auto;
-    margin-left: $gap-large;
   }
 }
 

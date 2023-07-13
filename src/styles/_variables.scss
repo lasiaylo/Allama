@@ -1,17 +1,32 @@
+/* Breakpoints */
+$breakpoint-mobile-width: 600px;
+$breakpoint-mobile-height: 400px;
+
+@mixin desktop {
+  @media (width >= calc(#{$breakpoint-mobile-width} + 1px))  and (height >= calc(#{$breakpoint-mobile-height} + 1px)){
+    @content
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: $breakpoint-mobile-width), screen and (max-height: $breakpoint-mobile-height) {
+    @content
+  }
+}
+
 /* Palette */
-//$background-color: #fafbff;
 $background-color: #FFFEFA;
 $primary-color: #1c1c1b;
 $secondary-color: #868686;
 $fade-in-color: #8c8a85;
 $selected-color: #403F3D;
-$font: "GT Sectra Display Trial";
+$font: "Grenette Trial";
 
 /* Gaps */
-$gap-x-large: 75px;
-$gap-large: 35px;
-$gap-med: 15px;
-$gap-small: 5px;
+  $gap-x-large: 75px;
+  $gap-large: 35px;
+  $gap-med: 15px;
+  $gap-small: 5px;
 
 /* Site Margins */
 $site-width: 800px;

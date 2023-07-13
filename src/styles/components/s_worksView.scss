@@ -2,10 +2,18 @@
 @import 's_noise';
 
 .card-view {
+  position: relative;
   grid-area: 1/1;
-  perspective: 900px;
+  padding-top: 56.25%; 
   cursor: pointer;
-  //animation: card-float-x 10s cubic-bezier(0.42, 0, 0.2, 1) alternate infinite;
+
+  .player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .works-view {
@@ -14,18 +22,8 @@
   flex-direction: column;
 }
 
-.te {
+.card {
   z-index: 1;
   display: grid;
   isolation: isolate;
-}
-
-@keyframes card-float-x {
-  from {
-    transform: rotateX(-1deg) rotateY(-2deg) rotateZ(0deg) translate3d(-2px, 5px, -5px);;
-  }
-
-  to {
-    transform: translate3d(2px, -3px, 10px) rotateX(2deg) rotateY(4deg) rotateZ(-2deg);
-  }
 }

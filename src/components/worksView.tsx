@@ -31,7 +31,9 @@ export default function WorksView(work: React.PropsWithChildren<IWork>) {
     <animated.a className="card-view" href={link} target="_blank" style={style}>
       {previewVideo ? (
         <ReactPlayer
-          className="previewVideo"
+          className="player"
+          width="100%"
+          height="100%"
           url={item}
           playing={true}
           volume={0}
@@ -46,25 +48,7 @@ export default function WorksView(work: React.PropsWithChildren<IWork>) {
 
   return (
     <div className={'works-view'}>
-      <div className={'te'}>
-        {/*<div className={'beepboop'}></div>*/}
-        {cardView}
-        {/*<a className="card-view" href={link} target="_blank">*/}
-        {/*  {previewVideo ? (*/}
-        {/*    <ReactPlayer*/}
-        {/*      className="previewVideo"*/}
-        {/*      url={previewVideo.file.url}*/}
-        {/*      playing={true}*/}
-        {/*      volume={0}*/}
-        {/*      loop={true}*/}
-        {/*      // height={200}*/}
-        {/*      fallback={fallback}*/}
-        {/*    />*/}
-        {/*  ) : (*/}
-        {/*    fallback*/}
-        {/*  )}*/}
-        {/*</a>*/}
-      </div>
+      <div className={'card'}>{cardView}</div>
       <NoiseTransition id={id}>
         <h2>{name}</h2>
       </NoiseTransition>
