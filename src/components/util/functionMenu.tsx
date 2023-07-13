@@ -3,8 +3,8 @@ import * as React from 'react';
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuProps } from '@radix-ui/react-navigation-menu';
 import '../../styles/components/s_functionMenu.scss';
-import NoiseTransition from '../noiseTransition';
 import Noise from '../noise';
+import NoiseHover from '../noiseHover';
 
 export interface IButton {
   label: string;
@@ -29,7 +29,7 @@ export default function FunctionMenu({
           className="menu-link"
           onSelect={callback ? () => callback() : undefined}
         >
-          <NoiseTransition id={label} isActive={active} isHoverable={true}>{label}</NoiseTransition>
+          <NoiseHover id={label} isActive={active} isHoverable={true}>{label}</NoiseHover>
         </NavigationMenu.Link>
       </NavigationMenu.Item>
     ) : (
